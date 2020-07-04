@@ -1,14 +1,20 @@
 import Link from 'next/link';
+import { useSelector, useDispatch } from 'react-redux';
+import { logoutUser } from '../redux/user/user.actions';
 
 export default () => {
+  const user = useSelector(state => state.user.user);
+  const cart = useSelector(state => state.cart);
+  const dispatch = useDispatch();
   return (
     <nav className='nav flex-align'>
       <img src="/images/logo.png" alt="Ojaa Logo"/>
       <input type="text" placeholder="Search food stuffs, categories"/>
       <div>
         <Link href="/"><a className='bold'><img src="/icons/home.svg" alt="home"/> <span>Home</span></a></Link>
-        <Link href="/login"><a className='bold'><img src="/icons/user.svg" alt="user"/><span>Login</span></a></Link>
-        <Link href="/cart"><a className='bold'><img src="/icons/cart.svg" alt="cart"/><span className='numberItems'>10</span><span>Cart</span></a></Link>
+        <Link href="/login"><a className='bold'><img src="/icons/user.svg" alt="user"/><span>{user ? 'Profile' : 'Login'}</span></a></Link>
+        <Link href="/cart"><a className='bold'><img src="/icons/cart.svg" alt="cart"/><span className='numberItems'>{cart.cartItems.length}</span><span>Cart</span></a></Link>
+        <button onClick={() => dispatch(logoutUser())}>LOG OUT</button>
       </div>
       <style jsx>{`
         input {
