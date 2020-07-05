@@ -1,8 +1,8 @@
 import { FETCH_USER_CART } from "./cart.types";
 
 const INITIAL_STATE = {
-  cartItems : [],
-  cartTotal : 0
+  cartItems : [,2,3,4,5,6,7,8,9,10],
+  cartTotal : 10
 }
 
 const cartReducer = (state = INITIAL_STATE,action) => {

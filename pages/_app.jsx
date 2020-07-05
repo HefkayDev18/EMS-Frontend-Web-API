@@ -5,6 +5,7 @@ import { Provider } from 'react-redux'
 import store from '../redux/store';
 import { setCurrentUser, getUserProfile } from '../redux/user/user.actions';
 import { fetchCart } from '../redux/cart/cart.actions';
+import Head from 'next/head'
 
 export default function App({ Component, pageProps }) {
   useEffect(()=> {
@@ -17,6 +18,10 @@ export default function App({ Component, pageProps }) {
   }, [])
   return (
     <Provider store={store}>
+      <Head>
+        <link rel="shortcut icon" href="/images/logo.png" type="image/x-icon"/>
+        <meta name="description" content="Buy foodstufss online"/>
+      </Head>
       <Component {...pageProps} />
     </Provider>
   )
