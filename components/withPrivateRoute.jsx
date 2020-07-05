@@ -1,16 +1,18 @@
 import { useState, useEffect } from "react"
-import Router from "next/router"
+import Router from "next/router";
+import Layout from "./Layout";
+import { useSelector } from "react-redux";
 
-const isAuth = 'ola';
 
 export default Component => {
   return (props) => {
+    const user = useSelector(state => state.user.user);
     useEffect(() => {
-      if(!isAuth) Router.push('/login')
+      if(!user) Router.push('/')
     })
     return (
       <div>
-        {isAuth && <Component {...props} name={me} />}
+        {user && <Component {...props} />}
       </div>
     )
   }
