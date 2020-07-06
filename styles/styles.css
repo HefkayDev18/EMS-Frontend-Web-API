@@ -12,6 +12,7 @@
   --gray-1 : #929292;
   --gray-2 : #393939; 
   --gray-3 : #6A6A6A;
+  --blue-1 : #009BDC;
 }
 body { 
   padding: 0;
@@ -53,9 +54,21 @@ button:hover {
 .flex-column {
   flex-direction: column;
 }
+.flex-between {
+  justify-content: space-between;
+}
 .bold {
   font-weight: bold;
 }
 .bolder {
   font-weight: 900;
+}
+input::-webkit-outer-spin-button,
+input::-webkit-inner-spin-button {
+  -webkit-appearance: none;
+  margin: 0;
+}
+
+input[type=number] {
+  -moz-appearance:textfield; /* Firefox */
 }

@@ -21,13 +21,16 @@
   },
   "homepage": "https://github.com/aolamide/ojaa-web#readme",
   "dependencies": {
+    "formik": "^2.1.4",
     "js-cookie": "^2.2.1",
     "next": "^9.4.4",
     "react": "^16.13.1",
     "react-dom": "^16.13.1",
     "react-redux": "^7.2.0",
+    "react-toastify": "^6.0.8",
     "redux": "^4.0.5",
     "redux-logger": "^3.0.6",
-    "redux-thunk": "^2.3.0"
+    "redux-thunk": "^2.3.0",
+    "yup": "^0.29.1"
   }
 }

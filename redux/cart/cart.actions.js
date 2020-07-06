@@ -1,7 +1,8 @@
 import { FETCH_USER_CART } from "./cart.types"
+import { API } from "../apiBase"
 
 export const fetchCart = (id) => dispatch => {
-  fetch(`http://127.0.0.1:3001/cart/${id}`, {
+  fetch(API(`/cart/${id}`), {
     credentials : 'include'
   })
   .then(res => res.json())
