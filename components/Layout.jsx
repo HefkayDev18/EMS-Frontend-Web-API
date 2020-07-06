@@ -5,10 +5,24 @@ const Layout = ({ children }) => {
   return (
     <div>
       <Nav />
-      <div style={{paddingTop :'60px'}}>
+      <main>
         {children}
-      </div>
+      </main>
       <Footer />
+      <style jsx>
+        {
+          `
+          main{
+            padding-top : 79px
+          }
+          @media screen and (max-width : 709px) {
+            main {
+              padding-top : 136px
+            }
+          }
+          `
+        }
+      </style>
     </div>
   );
 }

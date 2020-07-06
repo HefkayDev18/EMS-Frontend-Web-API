@@ -5,7 +5,13 @@
   --black : #000;
   --dark: #3E3E3E;
   --main-gray : #F5F5F5;
+  --light-gray : #FCFCFC;
   --orange : #F27D1DE0;
+  --orange-2 : #F27D1DA6;
+  --orange-3 : #B45303;
+  --gray-1 : #929292;
+  --gray-2 : #393939; 
+  --gray-3 : #6A6A6A;
 }
 body { 
   padding: 0;
@@ -22,9 +28,14 @@ body {
 a{
   text-decoration: none;
 }
-
+button {
+  border : none
+}
 button:hover {
   cursor : pointer
+}
+.flex {
+  display: flex;
 }
 .flex-center {
   display: flex;
@@ -44,4 +55,7 @@ button:hover {
 }
 .bold {
   font-weight: bold;
+}
+.bolder {
+  font-weight: 900;
 }
