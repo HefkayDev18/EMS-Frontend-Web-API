@@ -68,7 +68,7 @@ export default () => {
           margin-bottom : -6px;
           margin-left : -5px
         }
-        @media screen and (max-width : 700px) {
+        @media screen and (max-width : 709px) {
           .nav {
             justify-content : space-between;
             align-items : center;
