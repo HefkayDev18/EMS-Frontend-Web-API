@@ -1,14 +1,14 @@
 import Layout from "../components/Layout";
 import Head from 'next/head';
-import Login from "../components/Login";
+import Register from "../components/Register";
 
 export default () => {
   return(
     <Layout>
       <Head>
-        <title>Login to Ojaa</title>
+        <title>Create Account on Ojaa</title>
       </Head>
-      <Login />
+      <Register />
     </Layout>
   )
 }

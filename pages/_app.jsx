@@ -1,4 +1,5 @@
 import '../styles/styles.css'
+import 'react-toastify/dist/ReactToastify.css';
 import { useEffect } from 'react'
 import Cookies from 'js-cookie'
 import { Provider } from 'react-redux'

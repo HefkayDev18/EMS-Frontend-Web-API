@@ -1,5 +1,7 @@
-import { SET_CURRENT_USER, LOG_OUT, SET_PROFILE } from './user.types';
+import { SET_CURRENT_USER, LOG_OUT, SET_PROFILE, LOGIN_SUCCESS, LOGGING_IN, LOGIN_ERROR, GET_USER_ERROR, IS_REGISTERING, REGISTER_ERROR, REGISTER_SUCCESS } from './user.types';
 import Cookies from 'js-cookie';
+import { fetchCart } from '../cart/cart.actions';
+import { API } from '../apiBase';
 
 export const setCurrentUser = user => ({
   type: SET_CURRENT_USER,
@@ -7,15 +9,83 @@ export const setCurrentUser = user => ({
 });
 
 export const getUserProfile = (id) => dispatch => {
-  fetch(`http://127.0.0.1:3001/user/${id}`, {
+  fetch(API(`/user/${id}`), {
     credentials : 'include'
   })
   .then(res=> res.json())
-  .then(data => dispatch({ type : SET_PROFILE, payload : data.user}))
+  .then(data => {
+    if(!data.error) dispatch({ type : SET_PROFILE, payload : data.user})
+    else {
+      Cookies.remove('OJAA_USER');
+      dispatch({ type : GET_USER_ERROR })
+    }
+  })
   .catch(err => console.log(err))
 }
 
+export const loginuser = (credentials) => dispatch => {
+  dispatch({ type : LOGGING_IN })
+  fetch(API('/login'), {
+    method : 'POST',
+    credentials : 'include',
+    headers : {
+      'Content-Type' : 'application/json'
+    },
+    body : JSON.stringify(credentials)
+  })
+  .then(res => res.json())
+  .then(data => {
+    if(data.error) {
+      dispatch({ type : LOGIN_ERROR , payload : data.error})
+    } else {
+      dispatch({ type : LOGIN_SUCCESS })
+      dispatch(getUserProfile(data.user._id))
+      dispatch(fetchCart(data.user._id))
+    }
+  })
+  .catch(err => {
+    console.log(err);
+    dispatch({ type : LOGIN_ERROR , payload : 'Snap! Could not connect to server'})
+  })
+}
+
+export const registerUser = (detailss) => dispatch => {
+  const details ={...detailss};
+  dispatch({ type : IS_REGISTERING });
+  if(details.phone) {
+    if(details.phone.startsWith('0')) {
+      details.phone = '+234' + details.phone.substring(1);
+    } else {
+      details.phone = '+234' + details.phone;
+    }
+  } else {
+    delete details.phone
+  }
+  fetch(API('/register'), {
+    method : 'POST',
+    credentials : 'include',
+    headers : {
+      'Content-Type' : 'application/json'
+    },
+    body : JSON.stringify(details)
+  })
+  .then(res => res.json())
+  .then(data => {
+    if(data.error) {
+      dispatch({ type : REGISTER_ERROR , payload : data.error})
+    } else {
+      dispatch({ type : REGISTER_SUCCESS })
+      dispatch(getUserProfile(data.user._id))
+      dispatch(fetchCart(data.user._id))
+    }
+  })
+  .catch(err => {
+    console.log(err)
+    dispatch({ type : REGISTER_ERROR , payload : 'Snap! Looks like you are offline'})
+  })
+}
 export const logoutUser = () => dispatch => {
   Cookies.remove('OJAA_USER');
+  fetch(API('/logout'));
   dispatch({type : LOG_OUT});
 }

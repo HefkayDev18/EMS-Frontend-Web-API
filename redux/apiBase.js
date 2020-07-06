@@ -1,0 +1,1 @@
+export const API = (path) => process.env.NODE_ENV === 'production' ? 'https://api.ojaafoods.ng' + path : 'http://localhost:3001' + path; 
