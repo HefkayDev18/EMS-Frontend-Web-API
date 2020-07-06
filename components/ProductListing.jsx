@@ -5,7 +5,7 @@ export default () => {
   const [products, setProducts] = useState([]);
   const [category, setCategory] = useState('all');
   useEffect(() => {
-    fetch('http://api.ojaafoods.ng/products')
+    fetch('https://api.ojaafoods.ng/products')
     .then(res => res.json())
     .then(data => setProducts(data.products))
     .catch(err => console.log(err))
