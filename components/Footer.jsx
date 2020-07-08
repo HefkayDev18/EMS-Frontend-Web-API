@@ -82,6 +82,7 @@ export default () => {
         }
         .footer-logo {
           margin-right : 25px;
+          width : 110px;
         }
         .footer-top a {
           color: black;

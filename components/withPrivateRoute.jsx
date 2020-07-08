@@ -1,18 +1,18 @@
-import { useState, useEffect } from "react"
+import { useEffect } from "react"
 import Router from "next/router";
-import Layout from "./Layout";
 import { useSelector } from "react-redux";
 
 
 export default Component => {
   return (props) => {
-    const user = useSelector(state => state.user.user);
+    const isLoggedIn = useSelector(state => state.user.isLoggedIn);
+    const isCheckingAuth = useSelector(state => state.user.isCheckingAuth);
     useEffect(() => {
-      if(!user) Router.push('/')
-    })
+      if(!isLoggedIn && !isCheckingAuth) Router.push('/login?redirected=true')
+    }, [isCheckingAuth])
     return (
       <div>
-        {user && <Component {...props} />}
+        {isLoggedIn && <Component {...props} />}
       </div>
     )
   }
