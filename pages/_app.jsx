@@ -10,6 +10,10 @@ import Head from 'next/head'
 
 export default function App({ Component, pageProps }) {
   useEffect(()=> {
+    fetch(API('/logout'), {
+      method : 'GET',
+      credentials : 'include'
+    });
     const user = Cookies.get('OJAA_USER') ?  JSON.parse(Cookies.get('OJAA_USER')) : null;
     store.dispatch(setCurrentUser(user));
     if(user) {
