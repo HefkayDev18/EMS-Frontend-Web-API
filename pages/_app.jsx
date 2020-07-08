@@ -7,6 +7,7 @@ import store from '../redux/store';
 import { setCurrentUser, getUserProfile } from '../redux/user/user.actions';
 import { fetchCart } from '../redux/cart/cart.actions';
 import Head from 'next/head'
+import { API } from '../redux/apiBase';
 
 export default function App({ Component, pageProps }) {
   useEffect(()=> {
