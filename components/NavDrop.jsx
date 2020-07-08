@@ -1,11 +1,15 @@
 import { useSelector, useDispatch } from "react-redux";
 import Link from 'next/link'
 import { logoutUser } from "../redux/user/user.actions";
+import Router from 'next/router';
 
 export default () => {
   const user = useSelector(state => state.user);
   const dispatch = useDispatch();
-  const logout = () => dispatch(logoutUser());
+  const logout = () => {
+    dispatch(logoutUser());
+    Router.push('/');
+  };
   return (
     <>
     { user.user && user.isLoggedIn ?
