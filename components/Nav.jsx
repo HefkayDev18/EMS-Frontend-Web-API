@@ -1,20 +1,34 @@
 import Link from 'next/link';
-import { useSelector, useDispatch } from 'react-redux';
-import { logoutUser } from '../redux/user/user.actions';
+import { useSelector } from 'react-redux';
+import NavDrop from './NavDrop';
+import { useState } from 'react';
+import { useRouter } from 'next/router';
 
 export default () => {
+  const router = useRouter();
+  const noSearch = !(['/register', '/login', '/customer/profile', '/customer/profile/edit', '/cart'].includes(router.pathname));
   const user = useSelector(state => state.user.user);
   const cart = useSelector(state => state.cart);
-  // const dispatch = useDispatch();
+  const [showDrop, setShowDrop] = useState(false);
+  const toggleDrop = () => setShowDrop(!showDrop);
   return (
+    <>
     <nav className='nav flex-align'>
-      <Link href='/'><img src="/images/logo.png" alt="Ojaa Logo"/></Link>
-      <div className='input'><input type="text" placeholder="Search food stuffs, categories"/></div>
+      <Link href='/'><img className='logo' src="/images/logo.png" alt="Ojaa Logo"/></Link>
+      { noSearch && <div className='input'><input type="text" placeholder="Search food stuffs, categories"/></div>}
       <div>
-        <Link href="/"><a className='bold home-link'><img src="/icons/home.svg" alt="home"/> <span>Home</span></a></Link>
-        <Link href="/login"><a className='bold'><img src="/icons/user.svg" alt="user"/><span>{user ? 'Profile' : 'Login'}</span></a></Link>
+        <Link href="#"><a onClick={toggleDrop} className='bold'><img src="/icons/user.svg" alt="user"/><span>{user ? 'Profile' : 'Login'}</span><img style={{marginLeft : '3px'}} src='/icons/down.svg' alt='arrow'/></a></Link>
+        { showDrop &&
+          <div className='dropdown'>
+            <NavDrop />
+          </div>
+        }
         <Link href="/cart"><a className='bold'><img src="/icons/cart.svg" alt="cart"/><span className='numberItems'>{cart.cartItems.length}</span><span>Cart</span></a></Link>
       </div>
+    </nav>
+    {showDrop &&
+    <div onClick={toggleDrop} className='overlay'></div>
+    }
       <style jsx>{`
         input {
           border: 1px solid #CFCFCFB3;
@@ -29,8 +43,23 @@ export default () => {
           display : block;
           border-radius : 5px
         }
+        .logo {
+          width : 100px;
+        }
+        .logo:hover {
+          cursor : pointer
+        }
+        .overlay {
+          position : fixed;
+          width : 100vw;
+          height : 100vh;
+          background : rgba(255, 255, 255, 0.4);
+          z-index : 2;
+          top : 0;
+          left : 0
+        }
         a{
-          color: black;
+          color: #464646;
           font-size : 15px;
           margin: 0 10px;
           font-family: 'Roboto', sans-serif;
@@ -50,9 +79,10 @@ export default () => {
           display : flex;
           flex-wrap : wrap;
           justify-content : space-around;
-          background-color : var(--main-gray);
+          background-color : white;
           padding : 20px;
           box-shadow : 2px 2px 4px #eee;
+          z-index : 5
         }
         a span.numberItems {
           display: inline-block;
@@ -68,11 +98,24 @@ export default () => {
           margin-bottom : -6px;
           margin-left : -5px
         }
+        .dropdown {
+          position : absolute;
+          top : 100%;
+          right : 5%;
+          background : white;
+          box-shadow : 0px 3px 6px #00000029, 0px -3px 6px #00000029;
+          width : 200px;
+          height : 140px;
+          padding : 10px
+        } 
         @media screen and (max-width : 709px) {
           .nav {
             justify-content : space-between;
             align-items : center;
             padding : 12px
+          }
+          .dropdown {
+            top : 50%;
           }
           .nav .input, .nav img, .nav div {
             margin : 5px 0
@@ -84,9 +127,6 @@ export default () => {
             background-position : 8px 10px;
             background-size : 25px 25px;
           }
-          .home-link {
-            display : none
-          }
           .nav .input {
             order : 6;
             flex : 1 0 100%;
@@ -95,6 +135,6 @@ export default () => {
         }
       `}
       </style>
-    </nav>
+    </>
   )
 }

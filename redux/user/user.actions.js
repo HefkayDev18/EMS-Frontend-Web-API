@@ -86,6 +86,9 @@ export const registerUser = (detailss) => dispatch => {
 }
 export const logoutUser = () => dispatch => {
   Cookies.remove('OJAA_USER');
-  fetch(API('/logout'));
+  fetch(API('/logout'), {
+    method : 'GET',
+    credentials : 'include'
+  });
   dispatch({type : LOG_OUT});
 }

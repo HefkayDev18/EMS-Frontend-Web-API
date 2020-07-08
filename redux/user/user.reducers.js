@@ -7,7 +7,8 @@ const INITIAL_STATE = {
   logging_in : false,
   isRegistering : false,
   registerError : '',
-  registerSuccess : false
+  registerSuccess : false,
+  isCheckingAuth : true
 }
 
 const userReducer = (state = INITIAL_STATE,action) => {
@@ -15,6 +16,7 @@ const userReducer = (state = INITIAL_STATE,action) => {
     case SET_CURRENT_USER:
       return {
         ...state,
+        isCheckingAuth : false,
         user: action.payload,
         isLoggedIn : action.payload ? true : false
       }

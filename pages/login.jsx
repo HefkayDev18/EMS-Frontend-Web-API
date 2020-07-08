@@ -7,6 +7,10 @@ export default () => {
     <Layout>
       <Head>
         <title>Login to Ojaa</title>
+        <meta name="description" content="Login on Ojaa"/>
+        <meta property="og:description" content="Login on Ojaa"/>
+        <meta name="keywords" content="Login to ojaa ojaalogin"/>
+        <meta name="twitter:description" content="Login to Ojaa" />
       </Head>
       <Login />
     </Layout>
