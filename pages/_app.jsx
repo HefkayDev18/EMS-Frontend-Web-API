@@ -7,14 +7,9 @@ import store from '../redux/store';
 import { setCurrentUser, getUserProfile } from '../redux/user/user.actions';
 import { fetchCart } from '../redux/cart/cart.actions';
 import Head from 'next/head'
-import { API } from '../redux/apiBase';
 
 export default function App({ Component, pageProps }) {
   useEffect(()=> {
-    fetch(API('/logout'), {
-      method : 'GET',
-      credentials : 'include'
-    });
     const user = Cookies.get('OJAA_USER') ?  JSON.parse(Cookies.get('OJAA_USER')) : null;
     store.dispatch(setCurrentUser(user));
     if(user) {
