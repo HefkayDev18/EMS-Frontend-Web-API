@@ -35,6 +35,9 @@ button {
 button:hover {
   cursor : pointer
 }
+input:disabled, button:disabled {
+  cursor: not-allowed;
+}
 .flex {
   display: flex;
 }

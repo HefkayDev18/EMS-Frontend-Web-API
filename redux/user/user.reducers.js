@@ -1,4 +1,4 @@
-import { SET_CURRENT_USER, LOG_OUT, SET_PROFILE, LOGGING_IN, LOGIN_ERROR, LOGIN_SUCCESS, GET_USER_ERROR, IS_REGISTERING, REGISTER_ERROR, REGISTER_SUCCESS } from './user.types';
+import { SET_CURRENT_USER, LOG_OUT, SET_PROFILE, LOGGING_IN, LOGIN_ERROR, LOGIN_SUCCESS, GET_USER_ERROR, IS_REGISTERING, REGISTER_ERROR, REGISTER_SUCCESS, IS_UPDATING, UPDATE_SUCCESS, UPDATE_ERROR } from './user.types';
 
 const INITIAL_STATE = {
   user: null,
@@ -8,7 +8,10 @@ const INITIAL_STATE = {
   isRegistering : false,
   registerError : '',
   registerSuccess : false,
-  isCheckingAuth : true
+  isCheckingAuth : true,
+  isUpdating : false,
+  updateError : '',
+  updateSuccess : ''
 }
 
 const userReducer = (state = INITIAL_STATE,action) => {
@@ -73,6 +76,24 @@ const userReducer = (state = INITIAL_STATE,action) => {
         isRegistering : false,
         registerError : '',
         isLoggedIn : true
+      }
+    case IS_UPDATING : 
+      return {
+        ...state,
+        isUpdating : true
+      }
+    case UPDATE_ERROR :
+      return {
+        ...state,
+        isUpdating : false,
+        updateError : action.payload
+      }
+    case UPDATE_SUCCESS :
+      return {
+        ...state,
+        updateError : '',
+        isUpdating : false,
+        updateSuccess : action.payload
       }
     default:
       return state;

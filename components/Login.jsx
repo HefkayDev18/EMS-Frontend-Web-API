@@ -1,4 +1,4 @@
-import s from './css/authForm.module.css';
+import s from './css/form.module.css';
 import Link from 'next/link';
 import { useFormik } from 'formik';
 import * as Yup from 'yup'
@@ -67,7 +67,9 @@ export default () => {
           <button type='submit' disabled={logging_in} className={s.submitBtn}>{logging_in ? '...' : 'LOGIN'}</button>
         </div>
         <div className={s.formGroup}>
-          <button onClick={() => Router.push('/register')} type='button' className={s.switchBtn}>CREATE ACCOUNT</button>
+          <Link href="/register">
+            <button type='button' className={s.switchBtn}>CREATE ACCOUNT</button>
+          </Link>
         </div>
       </form>
       <ToastContainer

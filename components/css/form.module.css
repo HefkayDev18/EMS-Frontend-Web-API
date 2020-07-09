@@ -14,7 +14,7 @@
   display: flex;
   flex-direction: column-reverse;
 }
-.formGroup input:not([type=checkbox]), .formGroup button {
+.formGroup input:not([type=checkbox]), .formGroup button, .formGroup select {
   width : 100%;
   padding : 15px;
 }
@@ -33,6 +33,11 @@
 .switchBtn, .submitBtn {
   color : white;
   font-weight : bold;
+}
+.cancelBtn {
+  border: 1px solid red;
+  color : black;
+  background-color: white;
 }
 .formGroup a {
   color : var(--orange);

@@ -3,7 +3,7 @@ import { useSelector } from 'react-redux'
 
 export default () => {
   const user = useSelector(state => state.user.user);
-  const { firstName, lastName, email, phone } = user;
+  const { firstName, lastName, email, phone, address : { line1, line2, city_lga, state, phone : deliveryPhone} } = user;
   return (
     <>
       <div className='profileContainer flex flex-around'>
@@ -16,6 +16,7 @@ export default () => {
           <div className='box'>
             <p className='bold'>{firstName + ' ' + lastName}</p>
             <p>{ email }</p>
+            {phone && <p>{phone}</p>}
           </div>
         </div>
         <div className='userAddress'>
@@ -23,14 +24,14 @@ export default () => {
           <div className='box'>
             <div>
               <p className="bold">ADDRESS</p>
-              <p>25, Ariya Lane, </p>
-              <p>Off Ijoba, Surulere</p>
-              <p>Shomolu</p>
-              <p>Lagos</p>
+              <p>{ line1 || 'Address Line 1'}</p>
+              <p>{line2 || 'Address Line 2'}</p>
+              <p>{city_lga || 'LGA'}</p>
+              <p>{state || 'State'}</p>
             </div>
             <div>
               <p className="bold">PHONE</p>
-              <p>{phone}</p>
+              <p>{deliveryPhone}</p>
             </div>
           </div>
         </div>

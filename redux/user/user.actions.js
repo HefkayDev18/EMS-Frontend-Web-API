@@ -1,4 +1,4 @@
-import { SET_CURRENT_USER, LOG_OUT, SET_PROFILE, LOGIN_SUCCESS, LOGGING_IN, LOGIN_ERROR, GET_USER_ERROR, IS_REGISTERING, REGISTER_ERROR, REGISTER_SUCCESS } from './user.types';
+import { SET_CURRENT_USER, LOG_OUT, SET_PROFILE, LOGIN_SUCCESS, LOGGING_IN, LOGIN_ERROR, GET_USER_ERROR, IS_REGISTERING, REGISTER_ERROR, REGISTER_SUCCESS, IS_UPDATING, UPDATE_ERROR, UPDATE_SUCCESS } from './user.types';
 import Cookies from 'js-cookie';
 import { fetchCart } from '../cart/cart.actions';
 import { API } from '../apiBase';
@@ -14,7 +14,13 @@ export const getUserProfile = (id) => dispatch => {
   })
   .then(res=> res.json())
   .then(data => {
-    if(!data.error) dispatch({ type : SET_PROFILE, payload : data.user})
+    if(!data.error) {
+      if(!data.user.address) {
+        data.user.address = {};
+      }
+      Cookies.set('OJAA_USER', data.user);
+      dispatch({ type : SET_PROFILE, payload : data.user})
+    }
     else {
       Cookies.remove('OJAA_USER');
       dispatch({ type : GET_USER_ERROR })
@@ -84,6 +90,28 @@ export const registerUser = (detailss) => dispatch => {
     dispatch({ type : REGISTER_ERROR , payload : 'Snap! Looks like you are offline'})
   })
 }
+
+export const updateUser = (data, id) => dispatch => {
+  dispatch({ type : IS_UPDATING })
+  fetch(API(`/user/update/${id}`), {
+    method : 'PUT',
+    credentials : 'include',
+    headers : {
+      'Content-Type' : 'application/json'
+    },
+    body : JSON.stringify(data)
+  })
+  .then(res => res.json())
+  .then(data => {
+    if(data.error) {
+      dispatch({ type : UPDATE_ERROR , payload : data.error })
+    } else {
+      dispatch({ type : UPDATE_SUCCESS, payload : data.message });
+      dispatch(setCurrentUser(data.user))
+    }
+  })
+}
+
 export const logoutUser = () => dispatch => {
   Cookies.remove('OJAA_USER');
   fetch(API('/logout'), {

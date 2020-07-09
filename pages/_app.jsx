@@ -11,10 +11,11 @@ import Head from 'next/head'
 export default function App({ Component, pageProps }) {
   useEffect(()=> {
     const user = Cookies.get('OJAA_USER') ?  JSON.parse(Cookies.get('OJAA_USER')) : null;
+    console.log(user)
     store.dispatch(setCurrentUser(user));
     if(user) {
-      store.dispatch(getUserProfile(user.id))
-      store.dispatch(fetchCart(user.id))
+      store.dispatch(getUserProfile(user._id))
+      store.dispatch(fetchCart(user._id))
     }
   }, [])
   return (
@@ -35,8 +36,8 @@ export default function App({ Component, pageProps }) {
         <meta name="twitter:title" content="Ojaafoods Nigeria" />
         <meta name="twitter:description" content="Ojaafoods Nigeria is a digital market platform developed to eliminate the rigours of shopping at local markets by providing increased access to varieties of fresh and affordable foodstuff, frozen foods, groceries, spices at the tap of a button." />
         <meta name="twitter:image" content="https://dev.ojaafoods.ng/images/logo.png" />
-        <link rel="preload" href="/icons/user-round.svg"/>
-        <link rel="preload" href="/icons/logout.svg"/>
+        <link rel="prefetch" href="/icons/user-round.svg"/>
+        <link rel="prefetch" href="/icons/logout.svg"/>
       </Head>
       <Component {...pageProps} />
     </Provider>
