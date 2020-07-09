@@ -96,7 +96,7 @@ export default () => {
           padding: 2px;
           border-radius : 6px;
           border: 2.5px solid black;
-          width : 115px;
+          width : 120px;
           margin-right: 10px
         }
         .download div {

@@ -1,4 +1,4 @@
-import s from './css/authForm.module.css';
+import s from './css/form.module.css';
 import Link from 'next/link';
 import { useFormik } from 'formik';
 import * as Yup from 'yup';

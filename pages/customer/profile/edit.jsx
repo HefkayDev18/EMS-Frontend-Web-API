@@ -1,9 +1,11 @@
 import Layout from "../../../components/Layout"
+import Edit from "../../../components/Edit"
+import withPrivateRoute from "../../../components/withPrivateRoute"
 
-export default () => {
+export default withPrivateRoute(() => {
   return (
     <Layout>
-      <p>Edit is coming</p>
+      <Edit />
     </Layout>
   )
-}
+})
