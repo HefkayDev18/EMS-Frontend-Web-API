@@ -54,7 +54,7 @@ export default () => {
           <Link href='/login'>
             <a>Login</a>
           </Link>
-          <Link href='/login'>
+          <Link href='/register'>
             <a>Create Account</a>
           </Link>
           <Link href='/'>

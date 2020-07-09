@@ -35,6 +35,8 @@ export default function App({ Component, pageProps }) {
         <meta name="twitter:title" content="Ojaafoods Nigeria" />
         <meta name="twitter:description" content="Ojaafoods Nigeria is a digital market platform developed to eliminate the rigours of shopping at local markets by providing increased access to varieties of fresh and affordable foodstuff, frozen foods, groceries, spices at the tap of a button." />
         <meta name="twitter:image" content="https://dev.ojaafoods.ng/images/logo.png" />
+        <link rel="preload" href="/icons/user-round.svg"/>
+        <link rel="preload" href="/icons/logout.svg"/>
       </Head>
       <Component {...pageProps} />
     </Provider>
