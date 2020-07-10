@@ -13,7 +13,7 @@ export default () => {
               <img src="/icons/google.svg" width="30px" height="30px" alt="Google play"/>
               <div className='flex-justify flex-column'>
                 <span>Get it on</span>
-                <span>Google Play</span>
+                <span>GooglePlay</span>
               </div>
             </div>
           </a>
@@ -57,7 +57,7 @@ export default () => {
           <Link href='/register'>
             <a>Create Account</a>
           </Link>
-          <Link href='/'>
+          <Link href='/forgot-password'>
             <a>Forgot Password</a>
           </Link>
         </div>

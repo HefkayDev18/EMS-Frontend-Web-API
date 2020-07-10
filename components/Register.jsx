@@ -2,7 +2,7 @@ import s from './css/form.module.css';
 import Link from 'next/link';
 import { useFormik } from 'formik';
 import * as Yup from 'yup';
-import { ToastContainer, toast } from 'react-toastify';
+import { ToastContainer, toast, Bounce } from 'react-toastify';
 import { useEffect } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
 import Router from 'next/router';
@@ -16,7 +16,7 @@ export default () => {
   useEffect(() => {
     if(isLoggedIn) {
       toast.success('Successful');
-      Router.push('/');
+      setTimeout(() =>Router.push('/customer/profile'), 1500);
     }
   }, [isLoggedIn])
   useEffect(() => {
@@ -120,6 +120,7 @@ export default () => {
         rtl={false}
         pauseOnFocusLoss
         draggable
+        transition={Bounce}
       />
     </div>
   )

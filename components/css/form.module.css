@@ -18,7 +18,7 @@
   width : 100%;
   padding : 15px;
 }
-.formGroup input {
+.formGroup input, .formGroup select {
   border : 1px solid #D9D9D9;
   border-radius: 5px;
 }
@@ -36,8 +36,9 @@
 }
 .cancelBtn {
   border: 1px solid red;
-  color : black;
+  color : var(--blue-1);
   background-color: white;
+  font-weight : bold
 }
 .formGroup a {
   color : var(--orange);

@@ -18,7 +18,7 @@ export const getUserProfile = (id) => dispatch => {
       if(!data.user.address) {
         data.user.address = {};
       }
-      Cookies.set('OJAA_USER', data.user);
+      Cookies.set('OJAA_USER', data.user, { domain : 'ojaafoods.ng' });
       dispatch({ type : SET_PROFILE, payload : data.user})
     }
     else {
@@ -109,6 +109,10 @@ export const updateUser = (data, id) => dispatch => {
       dispatch({ type : UPDATE_SUCCESS, payload : data.message });
       dispatch(setCurrentUser(data.user))
     }
+  })
+  .catch(err => {
+    console.log(err);
+    dispatch({ type : UPDATE_ERROR, payload : 'Snap! Looks like you\'re offline'});
   })
 }
 

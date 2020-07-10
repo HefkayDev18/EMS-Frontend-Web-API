@@ -11,7 +11,6 @@ import Head from 'next/head'
 export default function App({ Component, pageProps }) {
   useEffect(()=> {
     const user = Cookies.get('OJAA_USER') ?  JSON.parse(Cookies.get('OJAA_USER')) : null;
-    console.log(user)
     store.dispatch(setCurrentUser(user));
     if(user) {
       store.dispatch(getUserProfile(user._id))

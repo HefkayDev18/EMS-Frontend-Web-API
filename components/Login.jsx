@@ -4,7 +4,7 @@ import { useFormik } from 'formik';
 import * as Yup from 'yup'
 import { useDispatch, useSelector } from 'react-redux';
 import { loginuser } from '../redux/user/user.actions';
-import { ToastContainer, toast } from 'react-toastify';
+import { ToastContainer, toast, Flip } from 'react-toastify';
 import { useEffect, useState } from 'react';
 import Router from 'next/router';
 
@@ -40,7 +40,7 @@ export default () => {
   useEffect(() => {
     if(isLoggedIn) {
       toast.success('Successful');
-      Router.push('/');
+      setTimeout(() => Router.push(Router.query.redirectedFrom || '/customer/profile'), 1000);
     }
   }, [isLoggedIn])
   return (
@@ -61,7 +61,7 @@ export default () => {
           <div>
             <input type="checkbox" name="" id="rememberMe"/><label htmlFor="rememberMe">Remember Me</label>
           </div>
-          <Link href="#"><a>Forgot Password?</a></Link>
+          <Link href="/forgot-password"><a>Forgot Password?</a></Link>
         </div>
         <div className={s.formGroup}>
           <button type='submit' disabled={logging_in} className={s.submitBtn}>{logging_in ? '...' : 'LOGIN'}</button>
@@ -80,6 +80,7 @@ export default () => {
         rtl={false}
         pauseOnFocusLoss
         draggable
+        transition={Flip}
       />
     </div>
   )
