@@ -3,7 +3,7 @@ import s from './css/form.module.css';
 import { useFormik } from 'formik';
 import * as Yup from 'yup';
 import { updateUser } from "../redux/user/user.actions";
-import { ToastContainer, toast } from 'react-toastify';
+import { ToastContainer, toast, Flip } from 'react-toastify';
 import { UPDATE_SUCCESS, UPDATE_ERROR } from "../redux/user/user.types";
 import { useEffect } from 'react';
 import Router from 'next/router';
@@ -204,7 +204,7 @@ export default () => {
         </div>
         <div className={s.formGroup}>
           <Link href='/customer/profile'>
-            <button type='button' disabled={isUpdating} className={s.cancelBtn}>CANCEL</button>
+            <button type='button' className={s.cancelBtn}>CANCEL</button>
           </Link>
         </div>
       </form>
@@ -216,6 +216,7 @@ export default () => {
         rtl={false}
         pauseOnFocusLoss
         draggable
+        transition={Flip}
       />
     </div>
   )

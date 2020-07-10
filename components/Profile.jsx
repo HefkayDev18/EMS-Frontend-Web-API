@@ -17,6 +17,7 @@ export default () => {
             <p className='bold'>{firstName + ' ' + lastName}</p>
             <p>{ email }</p>
             {phone && <p>{phone}</p>}
+            <Link href="/customer/profile/change-password"><a>Change Password</a></Link>
           </div>
         </div>
         <div className='userAddress'>
@@ -37,6 +38,10 @@ export default () => {
         </div>
       </div>
       <style jsx>{`
+        a {
+          color : var(--orange-3);
+          text-decoration : underline
+        }
         p {
           word-break : break-all;
         }
