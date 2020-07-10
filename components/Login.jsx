@@ -45,7 +45,7 @@ export default () => {
   }, [isLoggedIn])
   return (
     <div className={s.formContainer}>
-      <p className={s.formHead + ' bold'}>LOGIN</p>
+      <h1 className={s.formHead + ' bold'}>LOGIN</h1>
       <form onSubmit={formik.handleSubmit}>
         <div className={s.formGroup}>
           {formik.touched.email && formik.errors.email ? (<p>{formik.errors.email}</p>) : null}
@@ -57,10 +57,10 @@ export default () => {
             <input onChange={formik.handleChange} onBlur={formik.handleBlur} value={formik.values.password} placeholder='PASSWORD' type={showPassword ? 'text' : 'password'}  name="password" id="password"/><div onClick={() => setShowPassword(!showPassword)} style={{backgroundImage : showPassword ? 'url(/icons/show-password.svg)' : 'url(/icons/hide-password.svg)', backgroundSize :'100% 100%', width:'30px', height : '30px', marginLeft :'-35px'}}>{' '}</div>
           </div>
         </div>
-        <div className={s.formGroup + ' flex flex-between'} style={{flexDirection:'row'}}>
-          <div>
+        <div className={s.formGroup + ' flex flex-between'} style={{flexDirection:'row-reverse'}}>
+          {/* <div>
             <input type="checkbox" name="" id="rememberMe"/><label htmlFor="rememberMe">Remember Me</label>
-          </div>
+          </div> */}
           <Link href="/forgot-password"><a>Forgot Password?</a></Link>
         </div>
         <div className={s.formGroup}>

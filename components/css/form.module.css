@@ -4,6 +4,7 @@
 }
 .formHead {
   color : var(--orange-3);
+  font-size: 20px;
 }
 .formContainer form {
   width: 100%;

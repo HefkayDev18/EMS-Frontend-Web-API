@@ -81,3 +81,18 @@ input::-webkit-inner-spin-button {
 input[type=number] {
   -moz-appearance:textfield; /* Firefox */
 }
+.containers {
+  width : 70vw;
+  margin : 40px auto;
+  background : white;
+  padding : 20px;
+  color : #474747;
+}
+.containers h2 {
+  color : #444444;
+}
+@media screen and (max-width:500px) {
+  .containers {
+    width : 90vw
+  }
+}

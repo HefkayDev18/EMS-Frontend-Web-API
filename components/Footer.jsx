@@ -39,13 +39,13 @@ export default () => {
         </div>
         <div>
           <p>ABOUT US</p>
-          <Link href='/'>
+          <Link href='/about'>
             <a>About Ojaa</a>
           </Link>
-          <Link href='/'>
+          <Link href='/privacy'>
             <a>Our Privacy Policy</a>
           </Link>
-          <Link href='/'>
+          <Link href='/terms'>
             <a>Terms and Conditions</a>
           </Link>
         </div>

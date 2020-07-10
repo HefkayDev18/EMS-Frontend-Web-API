@@ -73,7 +73,7 @@ export default () => {
   })
   return (
     <div className={s.formContainer}>
-      <p className={s.formHead + ' bold'}>CREATE ACCOUNT</p>
+      <h1 className={s.formHead + ' bold'}>CREATE ACCOUNT</h1>
       <form onSubmit={formik.handleSubmit}>
         <div className={s.formGroup}>
           {formik.touched.firstName && formik.errors.firstName ? (<p>{formik.errors.firstName}</p>) : null}
@@ -105,7 +105,7 @@ export default () => {
         <div className={s.formGroup}>
         {formik.touched.accept && formik.errors.accept ? (<p>{formik.errors.accept}</p>) : null}
           <div>
-            <input value={formik.values.accept} onChange={formik.handleChange} onBlur={formik.handleBlur}  type="checkbox" name="accept" id="accept"/><label htmlFor="accept">I agree to the <Link href=""><a >Terms and Conditions</a></Link></label>
+            <input value={formik.values.accept} onChange={formik.handleChange} onBlur={formik.handleBlur}  type="checkbox" name="accept" id="accept"/><label htmlFor="accept">I agree to the <Link href="/terms"><a target='_blank'>Terms and Conditions</a></Link></label>
           </div>
         </div>
         <div className={s.formGroup}>

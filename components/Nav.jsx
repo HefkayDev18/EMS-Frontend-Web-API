@@ -6,7 +6,7 @@ import { useRouter } from 'next/router';
 
 export default () => {
   const router = useRouter();
-  const noSearch = !(['/register', '/login', '/customer/profile', '/customer/profile/edit', '/cart', '/customer/profile/change-password', '/forgot-password'].includes(router.pathname));
+  const noSearch = !(['/register', '/login', '/customer/profile', '/customer/profile/edit', '/cart', '/customer/profile/change-password', '/forgot-password', '/password/reset'].includes(router.pathname));
   const user = useSelector(state => state.user.user);
   const cart = useSelector(state => state.cart);
   const [showDrop, setShowDrop] = useState(false);
