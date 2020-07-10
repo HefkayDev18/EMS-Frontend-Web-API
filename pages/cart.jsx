@@ -1,7 +1,6 @@
 import Layout from "../components/Layout"
-import withPrivateRoute from "../components/withPrivateRoute"
 
-export default withPrivateRoute(() => {
+export default () => {
   return(
     <Layout>
       <div style={{height : '60vh'}} className='flex-center'>
@@ -9,4 +8,4 @@ export default withPrivateRoute(() => {
       </div>
     </Layout>
   )
-});
+};

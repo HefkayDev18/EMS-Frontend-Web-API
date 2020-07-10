@@ -43,7 +43,7 @@ export default () => {
   })
   return (
     <div className={s.formContainer}>
-      <p className={s.formHead + ' bold'}>FORGOT PASSWORD</p>
+      <h1 className={s.formHead + ' bold'}>FORGOT PASSWORD</h1>
       <form onSubmit={formik.handleSubmit}>
         <p>Enter your email address and we would email you a password reset link</p>
         <div className={s.formGroup}>
