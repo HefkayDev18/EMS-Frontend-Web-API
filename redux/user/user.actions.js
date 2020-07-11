@@ -19,6 +19,7 @@ export const getUserProfile = (id) => dispatch => {
         data.user.address = {};
       }
       Cookies.set('OJAA_USER', data.user, { domain : 'ojaafoods.ng' });
+      // Cookies.set('OJAA_USER', data.user);
       dispatch({ type : SET_PROFILE, payload : data.user})
     }
     else {

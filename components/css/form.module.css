@@ -67,6 +67,7 @@
 .formGroup input.n234 {
   width : 19%;
   padding : 10px;
+  padding : 10px 1px 10px 7px;
   text-align: center;
   letter-spacing: 4px;
   font-weight: bold;
@@ -75,5 +76,11 @@
   .formContainer {
     width: 90vw;
     max-width: 400px;
+  }
+}
+
+@media screen and (max-width : 392px) {
+  .formContainer {
+    width : 98vw
   }
 }
