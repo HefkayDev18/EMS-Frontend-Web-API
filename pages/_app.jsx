@@ -36,6 +36,7 @@ export default function App({ Component, pageProps }) {
         <meta name="twitter:image" content="https://dev.ojaafoods.ng/images/logo.png" key="twitter-image" />
         <link rel="prefetch" href="/icons/user-round.svg"/>
         <link rel="prefetch" href="/icons/logout.svg"/>
+        <link rel="preconnect" href="https://api.ojaafoods.ng" />
       </Head>
       <Component {...pageProps} />
     </Provider>

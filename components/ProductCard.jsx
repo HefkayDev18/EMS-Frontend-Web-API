@@ -1,13 +1,15 @@
+import Link from 'next/link'
+
 export default ({ product }) => {
-  let { name, price, measure, image } = product;
+  let { name, price, measure, image, slug } = product;
   return (
     <div className='flex productCard'>
       <div className='flex-center' style={{width : '25%'}}>
-        <img src="/images/frame.png" alt="" height='100%' width='100%'/>
+        <img src='/images/frame.png' alt="" height='100%' width='100%'/>
       </div>
       <div className='flex flex-column' style={{width : '75%', justifyContent :'space-between'}}>
         <div className='productDetails'>
-          <span className='bolder pName'>{name}</span>
+          <Link as={`/product/${slug}`} href='/product/[slug]'><a><span className='bolder pName'>{name}</span></a></Link>
         </div>
         <div className='productQuantities flex'>
           <div className='flex flex-column'>
@@ -15,9 +17,7 @@ export default ({ product }) => {
             <span className='pPrice bolder'>N{price}</span>
           </div>
           <div style={{alignSelf:'flex-end'}}>
-            <button>-</button>
-            <span className='bold'>0</span>
-            <button>+</button>
+            <button>ADD TO CART</button>
           </div>
         </div>
       </div>
@@ -50,12 +50,19 @@ export default ({ product }) => {
           justify-content : space-between
         }
         .productQuantities button {
-          font-weight : 900;
-          font-size : 17px;
-          padding : 5px 8px;
-          background: white;
-          margin : 0 11px;
-          border : 1px solid #A8A8A8;
+          font-weight : bold;
+          color : white;
+          padding : 6px;
+          background: var(--orange-2);
+          display : none;
+        }
+        .productCard:hover .productQuantities button {
+          display : inline;
+        }
+        @media screen and (max-width:800px) {
+          .productQuantities button {
+            display : inline;
+          }
         }
         @media screen and (max-width : 690px) {
           .productCard{

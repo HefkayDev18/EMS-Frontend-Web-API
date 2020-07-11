@@ -1,29 +1,41 @@
 import Link from 'next/link';
-import { useSelector } from 'react-redux';
+import { useSelector, useDispatch } from 'react-redux';
 import NavDrop from './NavDrop';
 import { useState } from 'react';
-import { useRouter } from 'next/router';
+import Router, { useRouter } from 'next/router';
+import { logoutUser } from '../redux/user/user.actions';
 
 export default () => {
   const router = useRouter();
   const noSearch = !(['/register', '/login', '/customer/profile', '/customer/profile/edit', '/cart', '/customer/profile/change-password', '/forgot-password', '/password/reset'].includes(router.pathname));
+  const isProfilePage = router.pathname.startsWith('/customer/profile');
   const user = useSelector(state => state.user.user);
   const cart = useSelector(state => state.cart);
   const [showDrop, setShowDrop] = useState(false);
-  const toggleDrop = () => setShowDrop(!showDrop);
+  const toggleDrop = e => {
+    e.preventDefault();
+    setShowDrop(!showDrop);
+  }
+  const dispatch = useDispatch();
+  const logout = (e) => {
+    e.preventDefault();
+    dispatch(logoutUser());
+    Router.push('/');
+  };
   return (
     <>
     <nav className='nav flex-align'>
       <Link href='/'><img className='logo' src="/images/logo.png" alt="Ojaa Logo"/></Link>
       { noSearch && <div className='input'><input type="text" placeholder="Search food stuffs, categories"/></div>}
       <div>
-        <Link href="#"><a onClick={toggleDrop} className='bold'><img src="/icons/user.svg" alt="user"/><span>{user ? 'Profile' : 'Login'}</span><img style={{marginLeft : '3px'}} src='/icons/down.svg' alt='arrow'/></a></Link>
+        {!isProfilePage && <Link href="#"><a onClick={toggleDrop} className='bold'><img src="/icons/user.svg" alt="user"/><span>{user ? 'Profile' : 'Login'}</span><img style={{marginLeft : '3px'}} src='/icons/down.svg' alt='arrow'/></a></Link>}
         { showDrop &&
           <div className='dropdown'>
             <NavDrop />
           </div>
         }
         <Link href="/cart"><a className='bold'><img src="/icons/cart.svg" alt="cart"/><span className='numberItems'>{cart.cartItems.length}</span><span>Cart</span></a></Link>
+        {isProfilePage && <Link href="#"><a onClick={logout} className='bold'>Log Out</a></Link>}
       </div>
     </nav>
     {showDrop &&
