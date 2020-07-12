@@ -56,8 +56,8 @@ export default ({ product, error, relatedProducts }) => {
               <p>Subtotal : <span className='subTotal'>N0</span><button className='cartBtn'>ADD TO CART</button></p>
             </div>
           </div>
-          <div>
-            <h3>DESCRIPTION</h3>
+          <div className='desc'>
+            <h3 className='dHead'>DESCRIPTION</h3>
             <p>{description}</p>
             <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Vitae accusantium recusandae in, reprehenderit tempora est non voluptatum cum deserunt nisi, ratione quisquam exercitationem esse fugit quia laboriosam repellendus adipisci odio!</p>
           </div>
@@ -104,7 +104,9 @@ export default ({ product, error, relatedProducts }) => {
         }
         .productImg img{
           width : 100%;
+          // max-width : 340px;
           height : 100%;
+          object-fit: 100% 100%;
         }
         .productDetails {
           width : 60%;
@@ -113,6 +115,7 @@ export default ({ product, error, relatedProducts }) => {
         }
         .name {
           color : var(--gray-2);
+          font-size : 2.53rem;
         }
         .price, .subTotal {
           color : var(--orange-3);
@@ -125,15 +128,23 @@ export default ({ product, error, relatedProducts }) => {
           margin-left : 10px;
           background : var(--orange);
           color : white;
-          padding : 10px
+          padding : 15px 12px; 
         }
         .qb {
           border : 1px solid var(--gray-2);
-          padding : 6px;
-          margin-right : 10px;
-          margin-left : 10px;
+          padding : 6px 8px;
+          margin-right : 15px;
+          margin-left : 15px;
           background : white;
           font-size : 18px
+        }
+        .desc p {
+          color : #444444;
+        }
+        .dHead {
+          margin-top : 15px;
+          border-bottom : 2px solid var(--orange-2);
+          display : inline
         }
         .relatedProducts {
           overflow : auto;
@@ -173,8 +184,15 @@ export default ({ product, error, relatedProducts }) => {
           }
           .productImg img{
             max-width : none;
+            max-width : 320px;
             width : 100%;
             height : auto;
+          }
+          .cartBtn {
+            float : right;
+          }
+          .name {
+            font-size : 1.8rem;
           }
         }
       `}</style>
