@@ -35,7 +35,7 @@ export default ({ product }) => {
           justify-content : space-between;
         }
         .pName {
-          color : var(--gray-2);
+          color : #393939d9;
           font-size : 18px;
         }
         .pMeasure {
@@ -52,14 +52,14 @@ export default ({ product }) => {
         .productQuantities button {
           font-weight : bold;
           color : white;
-          padding : 6px;
+          padding : 12px 8px;
           background: var(--orange-2);
           display : none;
         }
         .productCard:hover .productQuantities button {
           display : inline;
         }
-        @media screen and (max-width:800px) {
+        @media screen and (max-width:1025px) {
           .productQuantities button {
             display : inline;
           }
