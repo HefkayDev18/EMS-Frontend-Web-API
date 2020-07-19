@@ -1,11 +1,17 @@
 import Link from 'next/link'
+import { useDispatch, useSelector } from 'react-redux';
+import { addToCart } from '../redux/cart/cart.actions';
 
 export default ({ product }) => {
+  const cartItems = useSelector(state => state.cart.cartItems);
   let { name, price, measure, image, slug } = product;
+  const inCart = !!cartItems.find(item => item.product._id === product._id);
+  const dispatch = useDispatch();
+  const addItem = () => dispatch(addToCart({product, quantity : 1}));
   return (
     <div className='flex productCard'>
       <div className='flex-center' style={{width : '25%'}}>
-        <img src='/images/frame.png' alt="" height='100%' width='100%'/>
+        <img src='/images/frame.png' alt={name} height='100%' width='100%'/>
       </div>
       <div className='flex flex-column' style={{width : '75%', justifyContent :'space-between'}}>
         <div className='productDetails'>
@@ -17,7 +23,7 @@ export default ({ product }) => {
             <span className='pPrice bolder'>N{price}</span>
           </div>
           <div style={{alignSelf:'flex-end'}}>
-            <button>ADD TO CART</button>
+            <button disabled={inCart} onClick={addItem}>{inCart ? 'IN CART' : 'ADD TO CART'}</button>
           </div>
         </div>
       </div>

@@ -4,10 +4,12 @@ import { API } from "../redux/apiBase";
 import { useDispatch, useSelector } from "react-redux";
 import { setCategoryProducts } from "../redux/products/products.actions";
 import Skeleton from 'react-loading-skeleton';
+import CartPop from "./CartPop";
 
 export default () => {
   const dispatch = useDispatch();
   const productsList = useSelector(state => state.products);
+  const cartItems = useSelector(state => state.cart.cartItems);
   const [category, setCategory] = useState('all');
   const [fetching, setfetching] = useState(true);
   const products = productsList[category].products;
@@ -65,6 +67,7 @@ export default () => {
           <button onClick={loadMore} className='loadButton'>LOAD MORE</button>
         </div>
       }
+      <CartPop show={!!cartItems.length} />
       <style jsx>{`
         .products {
           width : 85vw;

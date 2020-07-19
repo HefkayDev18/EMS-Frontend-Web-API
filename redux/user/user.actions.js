@@ -45,9 +45,14 @@ export const loginuser = (credentials) => dispatch => {
     if(data.error) {
       dispatch({ type : LOGIN_ERROR , payload : data.error})
     } else {
+      if(!data.user.address) {
+        data.user.address = {};
+      }
+      Cookies.set('OJAA_USER', data.user, { domain : 'ojaafoods.ng' });
+      dispatch({ type : SET_PROFILE, payload : data.user})
       dispatch({ type : LOGIN_SUCCESS })
-      dispatch(getUserProfile(data.user._id))
-      dispatch(fetchCart(data.user._id))
+      dispatch(fetchCart(data.user._id));
+      Cookies.remove('OJAA_CART')
     }
   })
   .catch(err => {
@@ -81,8 +86,10 @@ export const registerUser = (detailss) => dispatch => {
     if(data.error) {
       dispatch({ type : REGISTER_ERROR , payload : data.error})
     } else {
+      data.user.address = {};
+      Cookies.set('OJAA_USER', data.user, { domain : 'ojaafoods.ng' });
+      dispatch({ type : SET_PROFILE, payload : data.user})
       dispatch({ type : REGISTER_SUCCESS })
-      dispatch(getUserProfile(data.user._id))
       dispatch(fetchCart(data.user._id))
     }
   })
@@ -124,4 +131,5 @@ export const logoutUser = () => dispatch => {
     credentials : 'include'
   });
   dispatch({type : LOG_OUT});
+  dispatch(fetchCart())
 }

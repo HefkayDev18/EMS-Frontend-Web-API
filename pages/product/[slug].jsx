@@ -1,10 +1,12 @@
 import Layout from '../../components/Layout'
 import { useRouter } from 'next/router'
-import { useSelector } from 'react-redux'
-import { useEffect } from 'react'
+import { useSelector, useDispatch } from 'react-redux'
+import { useEffect, useState } from 'react'
 import Link from 'next/link'
 import Head from 'next/head'
 import { API } from '../../redux/apiBase'
+import { addToCart } from '../../redux/cart/cart.actions'
+import CartPop from '../../components/CartPop'
 
 export default ({ product, error, relatedProducts }) => {
   const router = useRouter()
@@ -25,8 +27,21 @@ export default ({ product, error, relatedProducts }) => {
       </div>
     </div>
   }
-  // const user = useSelector(state => state.user.user);
-  const { name, image, price, measure, description, category } = product;
+  const { name, image, price, measure, description, category, _id } = product;
+  const dispatch = useDispatch();
+  const cartItems = useSelector(state => state.cart.cartItems);
+  const [quantity, setQuantity] = useState(0);
+  const [added, setAdded] = useState(false);
+  const increaseQuantity = () => setQuantity(quantity + 1);
+  const decreaseQuantity = () => setQuantity(quantity - 1);
+  const addC = () => {
+    dispatch(addToCart({ product, quantity }));
+    setAdded(true);
+  }
+  const inCart = cartItems.find(item => item.product._id === _id);
+  useEffect(() => {
+    if(inCart) setQuantity(inCart.quantity)
+  }, [inCart])
   return (
     <Layout>
       <>
@@ -52,8 +67,8 @@ export default ({ product, error, relatedProducts }) => {
               </div>
               <p>Measurement : {measure}</p>
               <p>Poduct Category : {category}</p>
-              <p>Quantity <button className='bold qb'>-</button> 0 <button className='bold qb'>+</button></p>
-              <p>Subtotal : <span className='subTotal'>N0</span><button className='cartBtn'>ADD TO CART</button></p>
+              <p>Quantity <button disabled={quantity === 0} className='bold qb' onClick={decreaseQuantity}>-</button> {quantity} <button className='bold qb' onClick={increaseQuantity}>+</button></p>
+              <p>Subtotal : <span className='subTotal'>N{quantity * price}</span><button className='cartBtn bold' onClick={addC}>ADD TO CART</button></p>
             </div>
           </div>
           <div className='desc'>
@@ -61,6 +76,7 @@ export default ({ product, error, relatedProducts }) => {
             <p>{description}</p>
             <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Vitae accusantium recusandae in, reprehenderit tempora est non voluptatum cum deserunt nisi, ratione quisquam exercitationem esse fugit quia laboriosam repellendus adipisci odio!</p>
           </div>
+          <CartPop show={added} />
         </div>
         <div className='productContainer'>
           <h3>Related products</h3>
