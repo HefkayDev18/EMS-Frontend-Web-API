@@ -154,7 +154,13 @@ export default () => {
             margin-left : 0px;
             margin-top : 20px
           }
-        } 
+        }
+        @media screen and (max-width : 468px) {
+          .box-header {
+            background-color : white;
+            border-bottom : 2px solid #ccc;
+          }
+        }
       `}</style>
     </div>
   )
