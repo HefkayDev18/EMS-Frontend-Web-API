@@ -39,8 +39,8 @@ export default () => {
   }, [login_error])
   useEffect(() => {
     if(isLoggedIn) {
-      toast.success('Successful');
-      setTimeout(() => Router.push(Router.query.redirectedFrom || '/customer/profile'), 1000);
+      // toast.success('Successful');
+      Router.push(Router.query.redirectedFrom || '/customer/profile');
     }
   }, [isLoggedIn])
   return (

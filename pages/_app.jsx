@@ -15,6 +15,8 @@ export default function App({ Component, pageProps }) {
     if(user) {
       store.dispatch(getUserProfile(user._id))
       store.dispatch(fetchCart(user._id))
+    } else {
+      store.dispatch(fetchCart())
     }
   }, [])
   return (

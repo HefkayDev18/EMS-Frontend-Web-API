@@ -1,11 +1,10 @@
 import Layout from "../components/Layout"
+import Cart from "../components/Cart"
 
 export default () => {
   return(
     <Layout>
-      <div style={{height : '60vh'}} className='flex-center'>
-        <h1>No Cart Page yet</h1>
-      </div>
+      <Cart />
     </Layout>
   )
 };
