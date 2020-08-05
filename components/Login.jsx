@@ -14,6 +14,12 @@ export default () => {
   const isLoggedIn = useSelector(state => state.user.isLoggedIn);
   const logging_in = useSelector(state => state.user.logging_in);
   const [showPassword, setShowPassword] = useState(false);
+  useEffect(() => {
+    if(isLoggedIn) {
+      // toast.success('Successful');
+      Router.push(Router.query.redirectedFrom || '/customer/profile');
+    }
+  }, [isLoggedIn])
   const formik = useFormik({
     initialValues : {
       email : '',
@@ -37,12 +43,6 @@ export default () => {
       dispatch({type : 'LOGIN_ERROR', payload : ''})
     }
   }, [login_error])
-  useEffect(() => {
-    if(isLoggedIn) {
-      // toast.success('Successful');
-      Router.push(Router.query.redirectedFrom || '/customer/profile');
-    }
-  }, [isLoggedIn])
   return (
     <div className={s.formContainer}>
       <h1 className={s.formHead + ' bold'}>LOGIN</h1>

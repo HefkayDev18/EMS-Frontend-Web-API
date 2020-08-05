@@ -1,8 +1,8 @@
-import { FETCH_USER_CART, ADD_TO_CART, REMOVE_FROM_CART, UPDATE_CART } from "./cart.types";
+import { FETCH_USER_CART, ADD_TO_CART, REMOVE_FROM_CART, UPDATE_CART, CHECKOUT_CART } from "./cart.types";
 
 const INITIAL_STATE = {
   cartItems : [],
-  cartTotal : 10
+  cartTotal : 0
 }
 
 const cartReducer = (state = INITIAL_STATE,action) => {
@@ -23,6 +23,12 @@ const cartReducer = (state = INITIAL_STATE,action) => {
         ...state,
         cartItems : action.payload.cartItems,
         cartTotal : action.payload.cartTotal
+      }
+    case CHECKOUT_CART :
+      return {
+        ...state,
+        cartItems : [],
+        cartTotal : 0
       }
     default:
       return state;

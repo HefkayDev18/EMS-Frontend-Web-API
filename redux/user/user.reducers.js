@@ -1,7 +1,21 @@
-import { SET_CURRENT_USER, LOG_OUT, SET_PROFILE, LOGGING_IN, LOGIN_ERROR, LOGIN_SUCCESS, GET_USER_ERROR, IS_REGISTERING, REGISTER_ERROR, REGISTER_SUCCESS, IS_UPDATING, UPDATE_SUCCESS, UPDATE_ERROR } from './user.types';
+import { SET_CURRENT_USER, LOG_OUT, SET_PROFILE, LOGGING_IN, LOGIN_ERROR, LOGIN_SUCCESS, GET_USER_ERROR, IS_REGISTERING, REGISTER_ERROR, REGISTER_SUCCESS, IS_UPDATING, UPDATE_SUCCESS, UPDATE_ERROR, SET_GUEST, SET_EDITING_GUEST } from './user.types';
 
 const INITIAL_STATE = {
   user: null,
+  guest : {
+    firstName : '',
+    lastName : '',
+    email : '',
+    address : {
+      line1 : '',
+      line2 : '',
+      city_lga : '',
+      state : 'Lagos',
+      phone : ''
+    }
+  },
+  guestSet : false,
+  editingGuest : false,
   isLoggedIn : false,
   login_error : '',
   logging_in : false,
@@ -94,6 +108,18 @@ const userReducer = (state = INITIAL_STATE,action) => {
         updateError : '',
         isUpdating : false,
         updateSuccess : action.payload
+      }
+    case SET_GUEST : 
+      return {
+        ...state,
+        guest : action.payload,
+        guestSet : true,
+        editingGuest : false
+      }
+    case SET_EDITING_GUEST : 
+      return {
+        ...state,
+        editingGuest : true
       }
     default:
       return state;

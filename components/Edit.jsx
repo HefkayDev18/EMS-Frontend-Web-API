@@ -9,7 +9,7 @@ import { useEffect } from 'react';
 import Router from 'next/router';
 import Link from 'next/link';
 
-const LGA = [
+export const LGA = [
   "Agege",
   "Ajeromi-Ifelodun",
   "Alimosho",
@@ -32,7 +32,7 @@ const LGA = [
   "Surulere"
 ];
 
-const formatPhone = (phone) => {
+export const formatPhone = (phone) => {
   if(phone.startsWith('0')) {
     phone = '+234' + phone.substring(1);
   } else {
@@ -40,7 +40,7 @@ const formatPhone = (phone) => {
   }
   return phone;
 };
-const removeFormat = (phone) => !phone ? '' : phone.substring(4);
+export const removeFormat = (phone) => !phone ? '' : phone.substring(4);
 
 export default () => {
   const dispatch = useDispatch();
@@ -53,7 +53,7 @@ export default () => {
     if(updateSuccess) {
       toast.success('Update was successful');
       dispatch({type : UPDATE_SUCCESS, payload : ''})
-      Router.push('/customer/profile');
+      Router.push(Router.query.redirectTo  || '/customer/profile');
     }
   }, [updateSuccess])
   useEffect(() => {
@@ -91,10 +91,10 @@ export default () => {
       .trim()
       .min(10, 'Invalid phone')
       .max(11, 'Invalid phone')
-      .required(),
+      .required('Phone is required'),
       lastName : Yup.string()
       .trim()
-      .required(),
+      .required('Last name is required'),
       line1 : Yup.string()
       .trim()
       .required('Line 1 is required'),
@@ -145,6 +145,7 @@ export default () => {
     <div className={s.formContainer}>
       <p className={s.formHead + ' bold'}>EDIT DETAILS</p>
       <form onSubmit={formik.handleSubmit}>
+        {Router.query.redirectTo && <p>Please fill delivery details correctly before proceeding</p>}
         <div className={s.formGroup}>
           {formik.touched.firstName && formik.errors.firstName ? (<p>{formik.errors.firstName}</p>) : null}
           <input onChange={formik.handleChange} onBlur={formik.handleBlur} value={formik.values.firstName} placeholder='FIRST NAME' id='firstName' name='firstName' type="text"/>
@@ -203,7 +204,7 @@ export default () => {
           <button type='submit' disabled={isUpdating} className={s.switchBtn}>{isUpdating ? '...' : 'UPDATE DETAILS'}</button>
         </div>
         <div className={s.formGroup}>
-          <Link href='/customer/profile'>
+          <Link href={Router.query.redirectTo || '/customer/profile'}>
             <button type='button' className={s.cancelBtn}>CANCEL</button>
           </Link>
         </div>

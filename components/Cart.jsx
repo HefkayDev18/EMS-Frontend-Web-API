@@ -50,14 +50,16 @@ export default () => {
       <div className='cartSummary'>
         <div className='flex flex-between'>
           <span className='bold cst'>ORDER SUMMARY</span>
-          <span className='bold'>{cart.cartItems.length} items</span>
+          <span className='bold'>{cart.cartItems.length} products</span>
         </div>
         <div className='flex flex-between'>
           <span className='cst'>Total</span>
           <span className='bold cartTotal'>N{cart.cartTotal}</span>
         </div>
         <div>
-          <button className='checkoutBtn bold'>PROCEED TO CHECKOUT</button>
+          <Link href='/cart/checkout'>
+            <button className='checkoutBtn bold'>PROCEED TO CHECKOUT</button>
+          </Link>
           <p className='payText'><img style={{verticalAlign : 'bottom'}} src="/icons/lock.svg" alt="lock"/> Your transactions are secured by Paystack</p>
         </div>
       </div>

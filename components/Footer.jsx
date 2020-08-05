@@ -116,7 +116,7 @@ export default () => {
         .footer-inner a, .footer-inner span {
           color: white;
           display : block;
-          margin : 8px 0;
+          margin : 15px 0px;
           font-size : 13px
         }
         .footer p {

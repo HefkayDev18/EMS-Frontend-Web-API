@@ -1,4 +1,4 @@
-import { SET_CURRENT_USER, LOG_OUT, SET_PROFILE, LOGIN_SUCCESS, LOGGING_IN, LOGIN_ERROR, GET_USER_ERROR, IS_REGISTERING, REGISTER_ERROR, REGISTER_SUCCESS, IS_UPDATING, UPDATE_ERROR, UPDATE_SUCCESS } from './user.types';
+import { SET_CURRENT_USER, LOG_OUT, SET_PROFILE, LOGIN_SUCCESS, LOGGING_IN, LOGIN_ERROR, GET_USER_ERROR, IS_REGISTERING, REGISTER_ERROR, REGISTER_SUCCESS, IS_UPDATING, UPDATE_ERROR, UPDATE_SUCCESS, SET_GUEST, SET_EDITING_GUEST } from './user.types';
 import Cookies from 'js-cookie';
 import { fetchCart } from '../cart/cart.actions';
 import { API } from '../apiBase';
@@ -23,7 +23,7 @@ export const getUserProfile = (id) => dispatch => {
       dispatch({ type : SET_PROFILE, payload : data.user})
     }
     else {
-      Cookies.remove('OJAA_USER');
+      Cookies.remove('OJAA_USER', { domain : 'ojaafoods.ng' });
       dispatch({ type : GET_USER_ERROR })
     }
   })
@@ -49,10 +49,11 @@ export const loginuser = (credentials) => dispatch => {
         data.user.address = {};
       }
       Cookies.set('OJAA_USER', data.user, { domain : 'ojaafoods.ng' });
+      // Cookies.set('OJAA_USER', data.user );
       dispatch({ type : SET_PROFILE, payload : data.user})
       dispatch({ type : LOGIN_SUCCESS })
       dispatch(fetchCart(data.user._id));
-      Cookies.remove('OJAA_CART')
+      localStorage.removeItem('OJAA_CART');
     }
   })
   .catch(err => {
@@ -124,8 +125,17 @@ export const updateUser = (data, id) => dispatch => {
   })
 }
 
+export const setGuest = guest => ({
+  type : SET_GUEST,
+  payload : guest
+})
+
+export const setEditingGuest = () => ({
+  type : SET_EDITING_GUEST
+});
+
 export const logoutUser = () => dispatch => {
-  Cookies.remove('OJAA_USER');
+  Cookies.remove('OJAA_USER', { domain : 'ojaafoods.ng'});
   fetch(API('/logout'), {
     method : 'GET',
     credentials : 'include'

@@ -79,13 +79,22 @@ export default ({ item }) => {
           background : none;
           padding : 8px;
         }
+        .onr:first-child {
+          width : 70%;
+          padding-left : 12px;
+        }
+        .onr{
+          width : 30%;
+        }
+        
         @media screen and (min-width : 615px) {
           .onr {
             flex-grow: 1;
             display: flex;
             justify-content: space-between;
             align-items: center;
-            padding : 12px;
+            padding : 8px;
+            width: 50%
           }
         }
         @media screen and (max-width : 800px) {

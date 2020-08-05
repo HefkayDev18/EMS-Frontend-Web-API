@@ -25,10 +25,10 @@ export default () => {
           <div className='box'>
             <div>
               <p className="bold">ADDRESS</p>
-              <p>{ line1 || 'Address Line 1'}</p>
-              <p>{line2 || 'Address Line 2'}</p>
-              <p>{city_lga || 'LGA'}</p>
-              <p>{state || 'State'}</p>
+              <p>{ line1 || 'NO ADDRESS ADDED YET'}</p>
+              <p>{line2 || ''}</p>
+              <p>{city_lga || ''}</p>
+              <p>{state || ''}</p>
             </div>
             <div>
               <p className="bold">PHONE</p>
