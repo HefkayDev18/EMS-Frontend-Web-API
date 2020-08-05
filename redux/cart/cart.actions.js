@@ -1,21 +1,20 @@
-import { FETCH_USER_CART, UPDATE_CART } from "./cart.types"
+import { FETCH_USER_CART, UPDATE_CART, CHECKOUT_CART } from "./cart.types"
 import { API } from "../apiBase"
-import Cookies from 'js-cookie'
 import { addToOfflineCart, updateOfflineCart, removeProductOfflineCart } from "./offlineCart"
 
 export const fetchCart = (id) => dispatch => {
   if(!id) {
-    const cart = Cookies.getJSON('OJAA_CART');
+    let cart = localStorage.getItem('OJAA_CART');
     if(!cart){
       const newCart = {
         cartItems : [],
         cartTotal : 0
       };
-      Cookies.set('OJAA_CART', newCart, { expires : 15 });
+      localStorage.setItem('OJAA_CART', JSON.stringify(newCart));
       dispatch({ type : FETCH_USER_CART, payload : newCart });
       return;
     }
-    dispatch({ type : FETCH_USER_CART, payload : cart });
+    dispatch({ type : FETCH_USER_CART, payload : JSON.parse(cart) });
     return;
   }
   fetch(API(`/cart/${id}`), {
@@ -50,7 +49,6 @@ export const addToCart = (data) => (dispatch, getState) => {
         console.error(data.error);
       } else {
         dispatch({ type : UPDATE_CART, payload : data.newCart })
-        // data.newCart.cartItems
       }
     })
   } else {
@@ -108,4 +106,12 @@ export const removeProduct = (product) => (dispatch, getState) => {
     const newCart = removeProductOfflineCart(product);
     dispatch({ type : UPDATE_CART, payload : newCart })
   }
+}
+
+
+export const checkoutCart = () => (dispatch) => {
+  if(localStorage.getItem('OJAA_CART')) {
+    localStorage.removeItem('OJAA_CART');
+  }
+  dispatch({ type : CHECKOUT_CART })
 }

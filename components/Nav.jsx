@@ -7,7 +7,7 @@ import { logoutUser } from '../redux/user/user.actions';
 
 export default () => {
   const router = useRouter();
-  const noSearch = !(['/register', '/login', '/customer/profile', '/customer/profile/edit', '/cart', '/customer/profile/change-password', '/forgot-password', '/password/reset'].includes(router.pathname));
+  const noSearch = !(['/register', '/login', '/customer/profile', '/customer/profile/edit', '/cart', '/cart/checkout', '/customer/profile/change-password', '/forgot-password', '/password/reset', '/about', '/order/confirmation'].includes(router.pathname));
   const isProfilePage = router.pathname.startsWith('/customer/profile');
   const user = useSelector(state => state.user.user);
   const cart = useSelector(state => state.cart);

@@ -11,3 +11,5 @@ export const REGISTER_SUCCESS = 'REGISTER_SUCCESS';
 export const IS_UPDATING = 'IS_UPDATING';
 export const UPDATE_ERROR = 'UPDATE_ERROR';
 export const UPDATE_SUCCESS = 'UPDATE_SUCCESS';
+export const SET_GUEST = 'SET_GUEST';
+export const SET_EDITING_GUEST = 'SET_EDITING_GUEST';
