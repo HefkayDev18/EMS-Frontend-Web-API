@@ -46,7 +46,7 @@ export default () => {
         <button name='all' onClick={handleChangeCategory} className={category === 'all' ? 'active' : ''}>All</button>
         <button name='grains' onClick={handleChangeCategory} className={category === 'grains' ? 'active' : ''}><img src="/images/flours.png" alt="grains"/> Grains</button>
         <button name='vegetables' onClick={handleChangeCategory} className={category === 'vegetables' ? 'active' : ''}><img src="/images/veg.png" alt="vegs"/> Vegetables</button>
-        <button name='oils' onClick={handleChangeCategory} className={category === 'oils' ? 'active' : ''}><img src="/images/spices.png" alt="oils"/> Oils</button>
+        <button name='oils' onClick={handleChangeCategory} className={category === 'oils' ? 'active' : ''}><img src="/images/oils.png" alt="oils"/> Oils</button>
         <button name='proteins' onClick={handleChangeCategory} className={category === 'proteins' ? 'active' : ''}><img src="/images/proteins.png" alt="proteins"/> Protein</button>
         <button name='spices' onClick={handleChangeCategory} className={category === 'spices' ? 'active' : ''}><img src="/images/spices.png" alt="spices"/> Spices</button>
         <button name='tubers' onClick={handleChangeCategory} className={category === 'tubers' ? 'active' : ''}><img src="/images/tubers.png" alt="tubers"/>  Tubers</button>
@@ -100,8 +100,7 @@ export default () => {
           color : white
         }
         .productsNav button img {
-          width : 14px;
-          height : 14px;
+          height : 16px;
           margin-right : 5px
         }
         .items {
