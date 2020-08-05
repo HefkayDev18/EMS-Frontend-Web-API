@@ -141,6 +141,9 @@ export default () => {
   const editingGuest = useSelector(state => state.user.editingGuest);
   const [ordering, setOrdering] = useState(false);
   useEffect(() => {
+    if(!cart.cartItems.length) {
+      Router.push('/cart')
+    }
     if(user && !user.address.line1) {
       Router.push('/customer/profile/edit?redirectTo=/cart/checkout');
     }
