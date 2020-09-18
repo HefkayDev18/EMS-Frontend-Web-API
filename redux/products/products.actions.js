@@ -16,7 +16,14 @@ export const setCategoryProducts = (category, data) => dispatch => {
       return dispatch({ type : 'SET_TUBERS', payload : { products : data.products, pages : data.pages}})
     case 'fruits' : 
       return dispatch({ type : 'SET_FRUITS', payload : { products : data.products, pages : data.pages}})
+    case 'search' :
+      return dispatch({ type : 'SET_SEARCH_RESULTS', payload : { products : data.products, pages : data.pages, newSearch : data.ns }})
     default :
       return;
   }
 }
+
+export const setSearchText = text => ({
+  type : 'SET_SEARCH_TEXT',
+  payload : text
+})
