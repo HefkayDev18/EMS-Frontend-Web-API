@@ -1,4 +1,10 @@
 const INITIAL_STATE = {
+  searchText : '',
+  search : {
+    currentPage : 0,
+    products : [],
+    pages : 0
+  },
   all : {
     currentPage : 0,
     products : [],
@@ -43,6 +49,20 @@ const INITIAL_STATE = {
 
 const productReducer = (state=INITIAL_STATE, action) => {
   switch(action.type) {
+    case 'SET_SEARCH_TEXT' :
+      return {
+        ...state,
+        searchText : action.payload
+      }
+    case 'SET_SEARCH_RESULTS' :
+      return {
+        ...state,
+        search : {
+          currentPage : action.payload.newSearch ? 1 : state.search.currentPage + 1 ,
+          products : action.payload.newSearch ? [...action.payload.products] : [...state.search.products, ...action.payload.products],
+          pages : action.payload.pages
+        }
+      }
     case 'SET_ALL' :
       return {
         ...state,

@@ -12,9 +12,26 @@ export default () => {
   const cartItems = useSelector(state => state.cart.cartItems);
   const [category, setCategory] = useState('all');
   const [fetching, setfetching] = useState(true);
+  const { searchText } = productsList;
   const products = productsList[category].products;
   useEffect(() => {
-    if(productsList[category].currentPage === 0) {
+    if(!searchText) {
+      setCategory('all');
+      return;
+    }
+    if(category !== 'search') setCategory('search');
+    setfetching(true);
+    fetch(API(`/products/search?keyword=${searchText}`))
+    .then(res => res.json())
+    .then(data => {
+      data.ns = true;
+      dispatch(setCategoryProducts('search', data));
+    })
+    .catch(err => console.log(err))
+    .finally(() => setfetching(false))
+  }, [searchText])
+  useEffect(() => {
+    if(productsList[category].currentPage === 0 && category !== 'search') {
       setfetching(true);
       fetch(API(`/products/${category === 'all' ? '' : category}`))
       .then(res => res.json())
@@ -27,7 +44,19 @@ export default () => {
   }, [category]);
   const loadMore = () => {
     setfetching(true);
-    fetch(API(`/products/${category === 'all' ? '' : category}?page=${productsList[category].currentPage + 1}`))
+    if(category === 'search') fetchMoreSearch();
+    else {
+      fetch(API(`/products/${category === 'all' ? '' : category}?page=${productsList[category].currentPage + 1}`))
+      .then(res => res.json())
+      .then(data => {
+        dispatch(setCategoryProducts(category, data));
+      })
+      .catch(err => console.log(err))
+      .finally(() => setfetching(false))
+    }
+  }
+  const fetchMoreSearch = () => {
+    fetch(API(`/products/search?keyword=${searchText}&page=${productsList[category].currentPage + 1}`))
     .then(res => res.json())
     .then(data => {
       dispatch(setCategoryProducts(category, data));
@@ -39,11 +68,11 @@ export default () => {
   return(
     <div className='products'>
       <div className='products-header flex'>
-        <span className='bold' style={{color : '#0F3646', textTransform:'capitalize'}}>{category}</span>
+        <span className='bold' style={{color : '#0F3646', textTransform:'capitalize'}}>{category === 'search' ? 'Search Results' : category}</span>
         <span className='bold' style={{color : '#B45303'}}>{products.length} PRODUCT{products.length === 1 ? '' : 'S'}</span>
       </div>
       <div className='productsNav flex'>
-        <button name='all' onClick={handleChangeCategory} className={category === 'all' ? 'active' : ''}>All</button>
+        <button name='all' onClick={handleChangeCategory} className={category === 'all' || category === 'search' ? 'active' : ''}>All</button>
         <button name='grains' onClick={handleChangeCategory} className={category === 'grains' ? 'active' : ''}><img src="/images/flours.png" alt="grains"/> Grains</button>
         <button name='vegetables' onClick={handleChangeCategory} className={category === 'vegetables' ? 'active' : ''}><img src="/images/veg.png" alt="vegs"/> Vegetables</button>
         <button name='oils' onClick={handleChangeCategory} className={category === 'oils' ? 'active' : ''}><img src="/images/oils.png" alt="oils"/> Oils</button>
@@ -53,6 +82,7 @@ export default () => {
         <button name='fruits' onClick={handleChangeCategory} className={category === 'fruits' ? 'active' : ''}><img src="/images/fruits.png" alt="fruits"/> Fruits</button>
       </div>
       <div className='items flex'>
+        { category === 'search' && products.length === 0 && <p>No products found</p>}
         {products.map(product => <ProductCard product={product} key={product._id} />)}
       </div>
       {productsList[category].currentPage === 0 && fetching &&
