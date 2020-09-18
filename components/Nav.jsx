@@ -4,10 +4,11 @@ import NavDrop from './NavDrop';
 import { useState } from 'react';
 import Router, { useRouter } from 'next/router';
 import { logoutUser } from '../redux/user/user.actions';
+import { setSearchText } from '../redux/products/products.actions';
 
 export default () => {
   const router = useRouter();
-  const noSearch = !(['/register', '/login', '/customer/profile', '/customer/profile/edit', '/cart', '/cart/checkout', '/customer/profile/change-password', '/forgot-password', '/password/reset', '/about', '/order/confirmation'].includes(router.pathname));
+  const home = router.pathname === '/';
   const isProfilePage = router.pathname.startsWith('/customer/profile');
   const user = useSelector(state => state.user.user);
   const cart = useSelector(state => state.cart);
@@ -22,11 +23,12 @@ export default () => {
     dispatch(logoutUser());
     Router.push('/');
   };
+  const handleText = e => dispatch(setSearchText(e.target.value))
   return (
     <>
     <nav className='nav flex-align'>
       <Link href='/'><img className='logo' src="/images/logo.png" alt="Ojaa Logo"/></Link>
-      { noSearch && <div className='input'><input type="text" placeholder="Search food stuffs, categories"/></div>}
+      { home && <form onSubmit={e => e.preventDefault()} className='input'><input onChange={handleText} type="search" placeholder="Search food stuffs, categories"/></form>}
       <div>
         {!isProfilePage && <Link href="#"><a onClick={toggleDrop} className='bold'><img src="/icons/user.svg" alt="user"/><span>{user ? 'Profile' : 'Login'}</span><img style={{marginLeft : '3px'}} src='/icons/down.svg' alt='arrow'/></a></Link>}
         { showDrop &&

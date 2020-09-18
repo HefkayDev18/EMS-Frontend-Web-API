@@ -4,7 +4,7 @@ import { useRouter } from 'next/router';
 
 const Layout = ({ children }) => {
   const router = useRouter();
-  const noSearch = (['/register', '/login', '/customer/profile', '/customer/profile/edit', '/cart', '/cart/checkout', '/customer/profile/change-password', '/forgot-password', '/password/reset', '/about', '/order/confirmation'].includes(router.pathname));
+  const home = router.pathname === '/';
   return (
     <div>
       <Nav />
@@ -21,7 +21,7 @@ const Layout = ({ children }) => {
           }
           @media screen and (max-width : 709px) {
             main {
-              padding-top : ${noSearch ? '79px' : '136px'}
+              padding-top : ${!home ? '79px' : '136px'}
             }
           }
           `
