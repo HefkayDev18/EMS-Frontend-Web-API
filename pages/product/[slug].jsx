@@ -74,7 +74,6 @@ export default ({ product, error, relatedProducts }) => {
           <div className='desc'>
             <h3 className='dHead'>DESCRIPTION</h3>
             <p>{description}</p>
-            <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Vitae accusantium recusandae in, reprehenderit tempora est non voluptatum cum deserunt nisi, ratione quisquam exercitationem esse fugit quia laboriosam repellendus adipisci odio!</p>
           </div>
           <CartPop show={added} />
         </div>
@@ -172,8 +171,7 @@ export default ({ product, error, relatedProducts }) => {
           cursor : pointer;
         }
         .rpName {
-          font-size : 20px;
-          color : var(--orange-2)
+          color : #232323
         }
         @media screen and (max-width : 768px) {
           .np {
