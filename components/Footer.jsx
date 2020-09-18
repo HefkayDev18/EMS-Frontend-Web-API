@@ -45,7 +45,7 @@ export default () => {
           <Link href='/privacy'>
             <a>Our Privacy Policy</a>
           </Link>
-          <Link href='/terms'>
+          <Link href='/privacy'>
             <a>Terms and Conditions</a>
           </Link>
         </div>
