@@ -24,7 +24,7 @@ export default () => {
           Data are collected, stored and processed to continually improve on our products and services. Data collected are used for marketing optimization purposes such as Google Digital Marketing. 
         </p>
         <header>3. How We Use Your Personal Data</header> 
-        <p>
+        <div>
           We process your data to improve and develop the products and services that we offer.<br/><br/> Your data are used for the following on our platform:
           <ul>
             <li>To create an account for you as a new user on Ojaafoods platforms</li>
@@ -34,7 +34,7 @@ export default () => {
             <li>Improving our website, applications, products and services</li>
             <li>Complying with our legal obligations, including verifying your identity where necessary for fraud detection.</li>
           </ul>      
-        </p> 
+        </div> 
         <header>4. How We Share Your Personal Data</header>
         <p>
           We may need to share your personal data with third parties for the following purposes:<br/><br/> Sale of products and services: In order to deliver your products and services purchased on our platform from third parties, we may be required to provide your personal data to such third parties. ( Eg Logistics Companies, Financial Institution , marketing agencies etc )<br/><br/> Working with third party service providers: We engage third parties to perform certain functions on our behalf. Examples include fulfilling orders for products or services, delivering packages, analyzing data, providing marketing assistance, processing payments, transmitting content, assessing and managing credit risk.<br/><br/> Business transfers: As we continue to develop our business, we might sell or buy other businesses or services. In such transactions, customer information may be transferred together with other business assets.<br/><br/> Detecting fraud and abuse: We release account and other personal data to other companies and organizations for fraud protection and credit risk reduction, and to comply with the law.<br/><br/> When we share your personal data with third parties we: require them to agree to use your data in accordance with the terms of this Privacy and Cookie Notice, our Privacy Policy and in accordance with the law; and only permit them to process your personal data for specified purposes and in accordance with our instructions. We do not allow our third-party service providers to use your personal data for their own purposes. 
