@@ -7,12 +7,12 @@ import { ToastContainer, toast, Flip } from 'react-toastify';
 import { useDispatch } from 'react-redux'
 import { checkoutCart } from '../../redux/cart/cart.actions'
 
-const Loading = () => {
+export const Loading = ({ text }) => {
   return (
     <>
       <div className='flex-center flex-column w'>
         <div className="loader flex-center"><div></div><div></div><div></div></div>
-        <p className='bold'>Please wait while we cofirm your order</p>
+        <p className='bold'>{text}</p>
       </div>
       <style jsx>{`
         div.w {
@@ -179,7 +179,7 @@ export default () => {
   return (
     <Layout>
       <div>
-        { loading ? <Loading /> : success ? <Success number={orderNo} /> : failure ?  <Failure retry={confirmOrder} /> : null}
+        { loading ? <Loading text='Please wait while we cofirm your order' /> : success ? <Success number={orderNo} /> : failure ?  <Failure retry={confirmOrder} /> : null}
         <ToastContainer
           position="bottom-left"
           autoClose={3500}
