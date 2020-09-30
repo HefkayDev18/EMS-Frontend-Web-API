@@ -66,18 +66,28 @@ export const Loading = ({ text }) => {
 
 const Success = ({number}) => {
   return (
-    <div className='flex-center flex-column bold'>
+    <div className='flex-center flex-column bold cont'>
       <img src="/icons/order-complete.svg" alt="Order Complete"/>
-      <p>Your order has been completed</p>
-      <p>Order Number : <span className='orderNo'>{number}</span></p>
-      <p className='small'>An order confirmation has been sent to your mail</p>
-      <Link href='/'>
-        <button>Back Home</button>
-      </Link>
+      <p className='thanks bold'>Thank you for your order</p>
+      <p className='small'>An order confirmation will be sent to your mail</p>
+      <div className='box flex-column flex-center'>
+        <div className='flex flex-between orderNo'>
+          <span>Order Number</span>
+          <span className=''>{number}</span>
+        </div>
+        <Link href='/'>
+          <button>Continue Shopping</button>
+        </Link>
+      </div>
       <style jsx>{`
+        .cont {
+          max-width : 80vw;
+          margin : auto;
+          text-align : center
+        }
         img {
-          width : 200px;
-          height : 200px;
+          width : 100px;
+          height : 100px;
           object-fit : cover
         }
         div {
@@ -85,20 +95,34 @@ const Success = ({number}) => {
           font-size : 19px
         }
         .small {
-          font-size : 15px
+          font-size : 18px
         }
         .orderNo {
-          font-size : 25px;
-          color : var(--orange-3)
+          font-size : 18px;
+          color : var(--orange-3);
+          width : 100%
+        }
+        .orderNo span:first-child {
+          color : black
+        }
+        .box {
+          border : 2px solid var(--orange-3);
+          padding : 10px;
+          min-width : 300px;
+          margin-bottom :50px
         }
         button {
-          padding : 19px;
+          padding : 15px;
           background : var(--orange);
           color : white;
           font-weight : bold;
           width : 200px;
-          font-size : 18px;
-          margin-bottom : 50px
+          font-size : 16px;
+          margin : 30px 0 30px;
+        }
+        .thanks {
+          color : var(--orange-3);
+          font-size : 29px
         }
       `}</style>
     </div>
