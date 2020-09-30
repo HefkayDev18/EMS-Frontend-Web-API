@@ -1,6 +1,7 @@
 import { useEffect, useState } from "react"
 import { useSelector } from "react-redux"
 import { API } from "../redux/apiBase"
+import { Loading } from "../pages/order/confirmation";
 
 const OrderCard = ({ amount, createdAt, orderNo, deliveryAddress, cart, status }) => {
   const [showMore, setShowMore] = useState(false);
@@ -125,6 +126,11 @@ const OrderCard = ({ amount, createdAt, orderNo, deliveryAddress, cart, status }
         .pName, .pQ {
           color : #505050
         }
+        @media screen and (max-width : 468px) {
+          span:first-child {
+            margin-right : 6px
+          }
+        }
       `}</style>
     </div>
   )
@@ -133,33 +139,66 @@ const OrderCard = ({ amount, createdAt, orderNo, deliveryAddress, cart, status }
 export default () => {
   const user = useSelector(state => state.user.user);
   const [orders, setOrders] = useState([]);
+  const [currentPage, setCurrentPage] = useState(1);
+  const [pages, setPages] = useState(1);
+  const [fetching, setFetching] = useState(true);
   useEffect(() => {
     fetchOrders()
   }, [])
   const fetchOrders = (page = 1) => {
+    setFetching(true);
     fetch(API(`/orders/${user._id}?page=${page}`), {
       credentials : 'include'
     })
     .then(res => res.json())
     .then(data => {
-      setOrders(p => [...p, ...data.orders]);
+      if(data.error) {
+        console.log(data.error)
+      } else {
+        setOrders(p => [...p, ...data.orders]);
+        setPages(data.pages)
+      }
     })
     .catch(err => {
       console.log(err)
     })
+    .finally(() => {
+      setFetching(false)
+    })
+  }
+  const loadMore = () => {
+    fetchOrders(currentPage + 1);
+    setCurrentPage(prev => (prev + 1));
   }
   return(
     <div>
       <h2>My Orders</h2>
+      {fetching && orders.length === 0 && <Loading text='Getting orders..'/>}
       {orders.map(order => <OrderCard key={order._id} {...order}/>)}
+      {(pages > currentPage) && <button onClick={loadMore}>{fetching ? '...' :'LOAD MORE'}</button>}
       <style jsx>{`
         div {
           width : 60vw;
           margin : auto;
         }
+        button {
+          display : block;
+          width : 100%;
+          padding : 12px;
+          font-weight : bold;
+          background : var(--blue-1);
+          margin : 10px 0;
+          color : white
+        }
         @media screen and (max-width : 768px) {
           div {
-            width : 90vw
+            width : 95vw
+          }
+        }
+        @media screen and (max-width : 468px) {
+          div {
+            font-size : 14px;
+            width : 98vw
           }
         }
       `}</style>
