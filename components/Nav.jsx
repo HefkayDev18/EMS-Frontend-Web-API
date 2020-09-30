@@ -23,7 +23,7 @@ export default () => {
     dispatch(logoutUser());
     Router.push('/');
   };
-  const handleText = e => dispatch(setSearchText(e.target.value))
+  const handleText = e => dispatch(setSearchText(e.target.value.trim()))
   return (
     <>
     <nav className='nav flex-align'>
@@ -119,7 +119,7 @@ export default () => {
           background : white;
           box-shadow : 0px 3px 6px #00000029, 0px -3px 6px #00000029;
           width : 200px;
-          height : 140px;
+          height : 150px;
           padding : 10px
         } 
         @media screen and (max-width : 709px) {
