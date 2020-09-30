@@ -24,8 +24,12 @@ export default () => {
     fetch(API(`/products/search?keyword=${searchText}`))
     .then(res => res.json())
     .then(data => {
-      data.ns = true;
-      dispatch(setCategoryProducts('search', data));
+      if(data.error) {
+        console.log(data.error)
+      } else {
+        data.ns = true;
+        dispatch(setCategoryProducts('search', data));
+      }
     })
     .catch(err => console.log(err))
     .finally(() => setfetching(false))
@@ -36,7 +40,9 @@ export default () => {
       fetch(API(`/products/${category === 'all' ? '' : category}`))
       .then(res => res.json())
       .then(data => {
-        dispatch(setCategoryProducts(category, data));
+        if(!data.error) {
+          dispatch(setCategoryProducts(category, data));
+        }
       })
       .catch(err => console.log(err))
       .finally(() => setfetching(false))
@@ -49,7 +55,9 @@ export default () => {
       fetch(API(`/products/${category === 'all' ? '' : category}?page=${productsList[category].currentPage + 1}`))
       .then(res => res.json())
       .then(data => {
-        dispatch(setCategoryProducts(category, data));
+        if(!data.error) {
+          dispatch(setCategoryProducts(category, data));
+        }
       })
       .catch(err => console.log(err))
       .finally(() => setfetching(false))
@@ -68,10 +76,10 @@ export default () => {
   return(
     <div className='products'>
       <div className='products-header flex'>
-        <span className='bold' style={{color : '#0F3646', textTransform:'capitalize'}}>{category === 'search' ? 'Search Results' : category}</span>
+        <span className='bold' style={{color : '#0F3646', textTransform:'capitalize'}}>{category === 'search' ? `Search Results for "${searchText}"` : category}</span>
         <span className='bold' style={{color : '#B45303'}}>{products.length} PRODUCT{products.length === 1 ? '' : 'S'}</span>
       </div>
-      <div className='productsNav flex'>
+      {!searchText && <div className='productsNav flex'>
         <button name='all' onClick={handleChangeCategory} className={category === 'all' || category === 'search' ? 'active' : ''}>All</button>
         <button name='grains' onClick={handleChangeCategory} className={category === 'grains' ? 'active' : ''}><img src="/images/flours.png" alt="grains"/> Grains</button>
         <button name='vegetables' onClick={handleChangeCategory} className={category === 'vegetables' ? 'active' : ''}><img src="/images/veg.png" alt="vegs"/> Vegetables</button>
@@ -80,9 +88,9 @@ export default () => {
         <button name='spices' onClick={handleChangeCategory} className={category === 'spices' ? 'active' : ''}><img src="/images/spices.png" alt="spices"/> Spices</button>
         <button name='tubers' onClick={handleChangeCategory} className={category === 'tubers' ? 'active' : ''}><img src="/images/tubers.png" alt="tubers"/>  Tubers</button>
         <button name='fruits' onClick={handleChangeCategory} className={category === 'fruits' ? 'active' : ''}><img src="/images/fruits.png" alt="fruits"/> Fruits</button>
-      </div>
+      </div>}
       <div className='items flex'>
-        { category === 'search' && products.length === 0 && <p>No products found</p>}
+        { category === 'search' && products.length === 0 && !fetching && <p>No products found</p>}
         {products.map(product => <ProductCard product={product} key={product._id} />)}
       </div>
       {productsList[category].currentPage === 0 && fetching &&
@@ -126,7 +134,7 @@ export default () => {
           colour : var(--gray-1);
         }
         .productsNav button.active {
-          background-color : var(--orange-2);
+          background-color : var(--orange);
           color : white
         }
         .productsNav button img {

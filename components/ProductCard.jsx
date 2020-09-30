@@ -10,16 +10,16 @@ export default ({ product }) => {
   const addItem = () => dispatch(addToCart({product, quantity : 1}));
   return (
     <div className='flex productCard'>
-      <div className='flex-center' style={{width : '25%'}}>
+      <div className='flex-center' style={{width : '25%', marginRight : '5px'}}>
         <img src='/images/frame.png' alt={name} height='100%' width='100%'/>
       </div>
       <div className='flex flex-column' style={{width : '75%', justifyContent :'space-between'}}>
         <div className='productDetails'>
           <Link as={`/product/${slug}`} href='/product/[slug]'><a><span className='bolder pName'>{name}</span></a></Link>
+          <span className='pMeasure'>{measure}</span>
         </div>
         <div className='productQuantities flex'>
-          <div className='flex flex-column'>
-            <span className='pMeasure bold'>{measure}</span>
+          <div className='flex' style={{alignItems : 'flex-end'}}>
             <span className='pPrice bolder'>N{price}</span>
           </div>
           <div style={{alignSelf:'flex-end'}}>
@@ -42,14 +42,15 @@ export default ({ product }) => {
         }
         .pName {
           color : #393939d9;
-          font-size : 18px;
+          font-size : 16px;
         }
         .pMeasure {
           color : var(--gray-3);
+          display : block
         }
         .pPrice {
           color : var(--orange-3);
-          font-size : 17px
+          font-size : 19px
         }
         .productQuantities {
           padding-left : 10px;
@@ -58,7 +59,7 @@ export default ({ product }) => {
         .productQuantities button {
           font-weight : bold;
           color : white;
-          padding : 12px 8px;
+          padding : 12px 10px;
           background: var(--orange-2);
           display : none;
         }
