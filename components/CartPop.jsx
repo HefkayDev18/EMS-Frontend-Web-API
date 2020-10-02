@@ -52,6 +52,19 @@ export default ({show}) => {
         .toCart {
           background : var(--orange)
         }
+        @media screen and (max-width : 400px) {
+          .cartPop {
+            padding : 8px 0px;
+            width : max-content
+          }
+          button {
+            font-size : 12px;
+            padding : 12px 8px
+          }
+          .total {
+            margin-left : 3px
+          }
+        }
       `}</style>
     </div>
   )
