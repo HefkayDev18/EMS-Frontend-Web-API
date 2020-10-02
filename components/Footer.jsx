@@ -1,6 +1,9 @@
 import Link from 'next/link';
+import { useSelector } from 'react-redux';
 
 export default () => {
+  const user = useSelector(state => state.user);
+  const showAccountTab = !(user.user && user.isLoggedIn) ;
   return (
     <footer className='footer'>
       <div className="footer-top flex-center">
@@ -30,15 +33,15 @@ export default () => {
       </div>
       <div className='footer-inner flex-align'>
         <div>
-          <p>CONTACT US</p>
-          <span>info@ojaafoods.ng</span>
+          <p className='bold'>CONTACT US</p>
+          <a href='mailto:info@ojaafoods.ng'>info@ojaafoods.ng</a>
           <span>+234XXXXXXXX</span>
           <Link href='/'>
             <a>Help Center</a>
           </Link>
         </div>
         <div>
-          <p>ABOUT US</p>
+          <p className='bold'>ABOUT US</p>
           <Link href='/about'>
             <a>About Ojaa</a>
           </Link>
@@ -49,18 +52,20 @@ export default () => {
             <a>Terms and Conditions</a>
           </Link>
         </div>
-        <div>
-          <p>ACCOUNT</p>
-          <Link href='/login'>
-            <a>Login</a>
-          </Link>
-          <Link href='/register'>
-            <a>Create Account</a>
-          </Link>
-          <Link href='/forgot-password'>
-            <a>Forgot Password</a>
-          </Link>
-        </div>
+        {showAccountTab &&
+          <div>
+            <p className='bold'>ACCOUNT</p>
+            <Link href='/login'>
+              <a>Login</a>
+            </Link>
+            <Link href='/register'>
+              <a>Create Account</a>
+            </Link>
+            <Link href='/forgot-password'>
+              <a>Forgot Password</a>
+            </Link>
+          </div>
+        }
       </div>
       <div className="socials flex-center">
         <a target='_blank' rel='noopener noreferrer' href="https://twitter.com/ojaafoods"><div className='flex-center'><img width='30px' height='30px' src="/icons/twitter.svg" alt="Twitter link"/></div></a>
