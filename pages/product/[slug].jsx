@@ -155,6 +155,7 @@ export default ({ product, error, relatedProducts }) => {
         }
         .desc p {
           color : #444444;
+          white-space: pre-wrap;
         }
         .dHead {
           margin-top : 15px;
