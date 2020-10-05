@@ -17,7 +17,7 @@ export default () => {
   useEffect(() => {
     if(isLoggedIn) {
       // toast.success('Successful');
-      Router.push(Router.query.redirectedFrom || '/customer/profile');
+      Router.push(Router.query.redirectedFrom || '/');
     }
   }, [isLoggedIn])
   const formik = useFormik({

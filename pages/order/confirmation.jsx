@@ -69,7 +69,7 @@ const Success = ({number}) => {
     <div className='flex-center flex-column bold cont'>
       <img src="/icons/order-complete.svg" alt="Order Complete"/>
       <p className='thanks bold'>Thank you for your order</p>
-      <p className='small'>An order confirmation has beenn sent to your mail</p>
+      <p className='small'>An order confirmation has been sent to your mail</p>
       <div className='box flex-column flex-center'>
         <div className='flex flex-between orderNo'>
           <span>Order Number</span>
