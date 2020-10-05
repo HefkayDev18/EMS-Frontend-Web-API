@@ -16,7 +16,7 @@ export default () => {
   useEffect(() => {
     if(isLoggedIn) {
       toast.success('Successful');
-      setTimeout(() =>Router.push('/customer/profile'), 1500);
+      setTimeout(() =>Router.push('/'), 1500);
     }
   }, [isLoggedIn])
   useEffect(() => {
