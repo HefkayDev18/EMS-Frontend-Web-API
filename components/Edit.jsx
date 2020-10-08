@@ -8,6 +8,7 @@ import { UPDATE_SUCCESS, UPDATE_ERROR } from "../redux/user/user.types";
 import { useEffect } from 'react';
 import Router from 'next/router';
 import Link from 'next/link';
+import { CITIES } from "../deliveryAddress";
 
 export const LGA = [
   "Agege",
@@ -102,8 +103,8 @@ export default () => {
       .trim()
       .notRequired(),
       city_lga : Yup.string()
-      .oneOf(LGA,'Invalid LGA')
-      .required('LGA is required'),
+      .oneOf(CITIES,'City/Invalid LGA')
+      .required('City/LGA is required'),
       state : Yup.string()
       .required()
     }),
@@ -181,8 +182,8 @@ export default () => {
             <div style={{width : '48%'}}>
               {formik.touched.city_lga && formik.errors.city_lga ? (<p>{formik.errors.city_lga}</p>) : <p>{` `}</p>}
               <select onChange={formik.handleChange} onBlur={formik.handleBlur} name="city_lga" id="city_lga" value={formik.values.city_lga}>
-                <option value='' disabled>LGA</option>
-                {LGA.map(lga => <option key={lga} value={lga}>{lga}</option>)}
+                <option value='' disabled>CITY/LGA</option>
+                {CITIES.map(lga => <option key={lga} value={lga}>{lga}</option>)}
               </select>
             </div>
             <div style={{width : '48%'}}>

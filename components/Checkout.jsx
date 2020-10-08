@@ -6,6 +6,7 @@ import { useEffect, useState } from "react";
 import Router from "next/router";
 import { API } from "../redux/apiBase";
 import { ToastContainer, toast, Flip } from 'react-toastify';
+import { getDeliveryPrice } from "../deliveryAddress";
 
 const CheckoutItem = ({ item }) => {
   const { product } = item;
@@ -227,14 +228,14 @@ export default () => {
           </div>
           <div className='flex flex-between bold darkgray CAsection'>
             <span>Delivery Charge :</span>
-            <span>N1500</span>
+            <span>N{getDeliveryPrice(user?.address.city_lga || guest.address.city_lga)}</span>
           </div>
           <div>
             <span className='grayText'><img style={{verticalAlign : 'bottom'}} src="/icons/interval.svg" alt="fast delivery"/>{` `}12 - 24 hours delivery</span>
           </div>
           <div className='flex flex-between bold CAsection'>
             <span>Total : </span>
-            <span className='total'>N{ cart.cartTotal + 1500 }</span>
+            <span className='total'>N{ cart.cartTotal + getDeliveryPrice(user?.address.city_lga || guest.address.city_lga) }</span>
           </div>
           <div>
             <button onClick={initOrder} disabled={ordering || (!(user || (guestSet && !editingGuest)))} className='btnPayment'>{ ordering ? '...' : 'CONTINUE TO PAYMENT'}</button>

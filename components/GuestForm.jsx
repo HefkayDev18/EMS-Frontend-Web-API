@@ -3,6 +3,7 @@ import * as Yup from 'yup';
 import { LGA, removeFormat, formatPhone } from './Edit'
 import { useSelector, useDispatch } from 'react-redux';
 import { setGuest } from '../redux/user/user.actions';
+import { CITIES } from '../deliveryAddress';
 
 export default () => {
   const guest = useSelector(state => state.user.guest);
@@ -42,8 +43,8 @@ export default () => {
     .trim()
     .notRequired(),
     city_lga : Yup.string()
-    .oneOf(LGA,'Invalid LGA')
-    .required('LGA is required'),
+    .oneOf(CITIES,'Invalid City/LGA')
+    .required('City/LGA is required'),
     state : Yup.string()
     .required('State is required')
   }),
@@ -111,8 +112,8 @@ export default () => {
                   <div style={{width : '48%'}}>
                     <label htmlFor="city_lga">City/LGA</label>
                     <select onChange={formik.handleChange} onBlur={formik.handleBlur} name="city_lga" id="city_lga" value={formik.values.city_lga}>
-                      <option value='' disabled>LGA</option>
-                      {LGA.map(lga => <option key={lga} value={lga}>{lga}</option>)}
+                      <option value='' disabled>City/LGA</option>
+                      {CITIES.map(lga => <option key={lga} value={lga}>{lga}</option>)}
                     </select>
                     {formik.touched.city_lga && formik.errors.city_lga ? (<p>{formik.errors.city_lga}</p>) : <p>{` `}</p>}
                   </div>
