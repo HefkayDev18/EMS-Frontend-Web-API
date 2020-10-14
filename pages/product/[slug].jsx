@@ -230,6 +230,6 @@ export async function getStaticProps({ params }) {
   const product = await fetch(API(`/product/slug/${params.slug}`));
   const data = await product.json();
   return {
-    props : {product : data.product || null, error :  data.error || null, relatedProducts : data.relatedProducts || null}, revalidate : 60
+    props : {product : data.product || null, error :  data.error || null, relatedProducts : data.relatedProducts || null}, revalidate : 60 * 30
   }
 }
