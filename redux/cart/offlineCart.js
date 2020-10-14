@@ -1,19 +1,17 @@
-import Cookies from 'js-cookie'
-
 const calcCartTotal = (cart) => {
   return cart.cartItems.reduce((a, c) => a + (c.quantity * c.product.price) , 0)
 }
 
 const addToOfflineCart = (item) => {
   // const cart = Cookies.getJSON('OJAA_CART');
-  let cart = localStorage.getItem('OJAA_CART');
+  let cart = sessionStorage.getItem('OJAA_CART');
   if(!cart) {
     const newCart = {
       cartItems : [item],
       cartTotal : item.product.price * item.quantity
     };
     // Cookies.set('OJAA_CART', newCart, { expires : 15 });
-    localStorage.setItem('OJAA_CART', JSON.stringify(newCart));
+    sessionStorage.setItem('OJAA_CART', JSON.stringify(newCart));
     return newCart;
   }
   //check if product is already in cart
@@ -25,14 +23,14 @@ const addToOfflineCart = (item) => {
     cart.cartItems[inCartIndex] = item;
   }
   cart.cartTotal = calcCartTotal(cart);
-  localStorage.setItem('OJAA_CART', JSON.stringify(cart));
+  sessionStorage.setItem('OJAA_CART', JSON.stringify(cart));
   // Cookies.set('OJAA_CART', cart, { expires : 15 });
   return cart;
 }
 
 const updateOfflineCart = (data) => {
   // const cart = Cookies.getJSON('OJAA_CART');
-  let cart = localStorage.getItem('OJAA_CART');
+  let cart = sessionStorage.getItem('OJAA_CART');
   if(!cart) return {
     cartItems : [],
     cartTotal : 0
@@ -43,13 +41,13 @@ const updateOfflineCart = (data) => {
   cart.cartItems[productIndex].quantity = data.quantity;
   cart.cartTotal = calcCartTotal(cart);
   // Cookies.set('OJAA_CART', cart, { expires : 15 });
-  localStorage.setItem('OJAA_CART', JSON.stringify(cart));
+  sessionStorage.setItem('OJAA_CART', JSON.stringify(cart));
   return cart;
 }
 
 const removeProductOfflineCart = (product) => {
   // const cart = Cookies.getJSON('OJAA_CART');
-  let cart = localStorage.getItem('OJAA_CART');
+  let cart = sessionStorage.getItem('OJAA_CART');
   if(!cart) return {
     cartItems : [],
     cartTotal : 0
@@ -60,7 +58,7 @@ const removeProductOfflineCart = (product) => {
   cart.cartItems.splice(productIndex, 1);
   cart.cartTotal = calcCartTotal(cart);
   // Cookies.set('OJAA_CART', cart, { expires : 15 });
-  localStorage.setItem('OJAA_CART', JSON.stringify(cart));
+  sessionStorage.setItem('OJAA_CART', JSON.stringify(cart));
   return cart;
 }
 
