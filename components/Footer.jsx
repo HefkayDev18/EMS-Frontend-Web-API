@@ -34,7 +34,7 @@ export default () => {
       <div className='footer-inner flex-align'>
         <div>
           <p className='bold'>CONTACT US</p>
-          <a href='mailto:info@ojaafoods.ng'>info@ojaafoods.ng</a>
+          <a href='mailto:customercare@ojaafoods.ng'>customercare@ojaafoods.ng</a>
           <span>+234XXXXXXXX</span>
           <Link href='/'>
             <a>Help Center</a>

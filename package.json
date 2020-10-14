@@ -23,7 +23,7 @@
   "dependencies": {
     "formik": "^2.1.4",
     "js-cookie": "^2.2.1",
-    "next": "^9.4.4",
+    "next": "^9.5.4",
     "react": "^16.13.1",
     "react-dom": "^16.13.1",
     "react-loading-skeleton": "^2.1.1",
