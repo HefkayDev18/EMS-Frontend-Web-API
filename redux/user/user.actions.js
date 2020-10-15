@@ -53,7 +53,7 @@ export const loginuser = (credentials) => dispatch => {
       dispatch({ type : SET_PROFILE, payload : data.user})
       dispatch({ type : LOGIN_SUCCESS })
       dispatch(fetchCart(data.user._id));
-      localStorage.removeItem('OJAA_CART');
+      sessionStorage.removeItem('OJAA_CART');
     }
   })
   .catch(err => {

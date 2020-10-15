@@ -4,13 +4,13 @@ import { addToOfflineCart, updateOfflineCart, removeProductOfflineCart } from ".
 
 export const fetchCart = (id) => dispatch => {
   if(!id) {
-    let cart = localStorage.getItem('OJAA_CART');
+    let cart = sessionStorage.getItem('OJAA_CART');
     if(!cart){
       const newCart = {
         cartItems : [],
         cartTotal : 0
       };
-      localStorage.setItem('OJAA_CART', JSON.stringify(newCart));
+      sessionStorage.setItem('OJAA_CART', JSON.stringify(newCart));
       dispatch({ type : FETCH_USER_CART, payload : newCart });
       return;
     }
@@ -110,8 +110,8 @@ export const removeProduct = (product) => (dispatch, getState) => {
 
 
 export const checkoutCart = () => (dispatch) => {
-  if(localStorage.getItem('OJAA_CART')) {
-    localStorage.removeItem('OJAA_CART');
+  if(sessionStorage.getItem('OJAA_CART')) {
+    sessionStorage.removeItem('OJAA_CART');
   }
   dispatch({ type : CHECKOUT_CART })
 }
