@@ -196,7 +196,7 @@ export default () => {
   }
   useEffect(() => {
     const trxref = new URLSearchParams(window.location.search).get('trxref');
-    if(trxref) {
+    if(!trxref) {
       router.push('/')
     } else {
       confirmOrder();
