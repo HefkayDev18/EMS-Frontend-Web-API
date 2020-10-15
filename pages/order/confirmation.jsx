@@ -196,6 +196,7 @@ export default () => {
   }
   useEffect(() => {
     if(!router.query.trxref) {
+      alert(JSON.stringify(router.query, null, 2))
       router.push('/')
     } else {
       confirmOrder();
