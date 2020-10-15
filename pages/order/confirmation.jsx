@@ -1,7 +1,7 @@
 import Layout from '../../components/Layout'
 import { useState, useEffect } from 'react'
 import Link from 'next/link'
-import Router  from 'next/router'
+import { useRouter }  from 'next/router'
 import { API } from '../../redux/apiBase'
 import { ToastContainer, toast, Flip } from 'react-toastify';
 import { useDispatch } from 'react-redux'
@@ -161,6 +161,7 @@ const Failure = ({ retry }) => {
 
 export default () => {
   const dispatch = useDispatch();
+  const router = useRouter();
   const [loading, setLoading] = useState(true);
   const [failure, setFailure] = useState(false);
   const [success, setSuccess] = useState(false);
@@ -173,7 +174,7 @@ export default () => {
       headers : {
         'Content-Type' : 'application/json'
       },
-      body : JSON.stringify({ ref : Router.query.trxref })
+      body : JSON.stringify({ ref : router.query.trxref })
     })
     .then(res => res.json())
     .then(data => {
@@ -194,8 +195,8 @@ export default () => {
     .finally(() => setLoading(false));
   }
   useEffect(() => {
-    if(!Router.query.trxref) {
-      Router.push('/')
+    if(!router.query.trxref) {
+      router.push('/')
     } else {
       confirmOrder();
     }
