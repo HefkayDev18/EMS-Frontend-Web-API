@@ -174,7 +174,7 @@ export default () => {
       headers : {
         'Content-Type' : 'application/json'
       },
-      body : JSON.stringify({ ref : router.query.trxref })
+      body : JSON.stringify({ ref : new URLSearchParams(window.location.search).get('trxref') })
     })
     .then(res => res.json())
     .then(data => {
@@ -195,8 +195,8 @@ export default () => {
     .finally(() => setLoading(false));
   }
   useEffect(() => {
-    if(!router.query.trxref) {
-      alert(JSON.stringify(router.query, null, 2))
+    const trxref = new URLSearchParams(window.location.search).get('trxref');
+    if(trxref) {
       router.push('/')
     } else {
       confirmOrder();
