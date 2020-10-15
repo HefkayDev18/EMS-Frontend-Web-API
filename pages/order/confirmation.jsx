@@ -166,7 +166,7 @@ export default () => {
   const [failure, setFailure] = useState(false);
   const [success, setSuccess] = useState(false);
   const [orderNo, setOrderNo] = useState(''); 
-  const confirmOrder = () => {
+  const confirmOrder = (ref) => {
     setLoading(true);
     setOrderNo('')
     fetch(API('/confirmOrder'), {
@@ -174,7 +174,7 @@ export default () => {
       headers : {
         'Content-Type' : 'application/json'
       },
-      body : JSON.stringify({ ref : router.query.trxref })
+      body : JSON.stringify({ ref })
     })
     .then(res => res.json())
     .then(data => {
@@ -195,11 +195,11 @@ export default () => {
     .finally(() => setLoading(false));
   }
   useEffect(() => {
-    if(!router.query.trxref) {
-      alert(JSON.stringify(router.query, null, 2))
+    const trxref = new URLSearchParams(window.location.search).get('trxref');
+    if(!trxref) {
       router.push('/')
     } else {
-      confirmOrder();
+      confirmOrder(trxref);
     }
   }, [])
   return (
