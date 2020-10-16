@@ -35,10 +35,8 @@ export default () => {
         <div>
           <p className='bold'>CONTACT US</p>
           <a href='mailto:customercare@ojaafoods.ng'>customercare@ojaafoods.ng</a>
-          <span>+234XXXXXXXX</span>
-          <Link href='/'>
-            <a>Help Center</a>
-          </Link>
+          <a href='tel:+2348098994599'>+234(0) 809 899 4599</a>
+          <a href='tel:+2348098994599'>+234(0) 809 899 4599</a>
         </div>
         <div>
           <p className='bold'>ABOUT US</p>
