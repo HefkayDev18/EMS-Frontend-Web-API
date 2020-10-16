@@ -10,7 +10,7 @@ import Skeleton from 'react-loading-skeleton';
 export default () => {
   const [token, setToken] = useState(''); 
   useEffect(() => {
-    const tk = Router.query.token;
+    const tk = new URLSearchParams(window.location.search).get('token');
     if(!tk) Router.push('/')
     else {
       fetch(API(`/password/check?token=${tk}`))
