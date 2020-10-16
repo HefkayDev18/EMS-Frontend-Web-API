@@ -172,9 +172,10 @@ export default () => {
   }
   return(
     <div>
-      <h2>My Orders</h2>
+      <h2>Your Orders</h2>
       {fetching && orders.length === 0 && <Loading text='Getting orders..'/>}
       {orders.map(order => <OrderCard key={order._id} {...order}/>)}
+      {!fetching && orders.length === 0 && <p>No orders yet.</p>}
       {(pages > currentPage) && <button onClick={loadMore}>{fetching ? '...' :'LOAD MORE'}</button>}
       <style jsx>{`
         div {
