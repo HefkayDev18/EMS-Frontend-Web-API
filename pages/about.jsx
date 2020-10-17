@@ -23,9 +23,9 @@ export default () => {
           Our solution was built to reduce human contact within the community markets as we fight the scourge offer Covid-19 and other transmissible diseases.
         </p>
         <h3>Contact Us</h3>
-        <h5>Ojaa Foods {'&'} Logistics Services Ltd</h5>
+        <h5>Ojaa Food {'&'} Logistics Services Ltd.</h5>
         <h5>Ikeja, Lagos</h5>
-        <p>info@ojaafoods.ng  +234,080XXXXXX, +234,080XXXXXX</p>
+        <p>customercare@ojaafoods.ng,  +234(0) 809 899 4599</p>
       </div>
     </Layout>
   )
