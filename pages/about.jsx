@@ -20,7 +20,7 @@ export default () => {
           With our reliable and cost efficient logistics service, your orders will be delivered to your doorstep promptly.
         </p>
         <p>
-          Our solution was built to reduce human contact within the community markets as we fight the scourge offer Covid-19 and other transmissible diseases.
+          Our solution was built to reduce human contact within the community markets as we fight the scourge of Covid-19 and other transmissible diseases.
         </p>
         <h3>Contact Us</h3>
         <h5>Ojaa Food {'&'} Logistics Services Ltd.</h5>
