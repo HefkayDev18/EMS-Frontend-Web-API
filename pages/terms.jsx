@@ -1,7 +1,7 @@
 import Layout from '../components/Layout'
 import Head from 'next/head'
 
-export default () => {
+const Terms = () => {
   return (
     <Layout>
       <Head>
@@ -11,44 +11,100 @@ export default () => {
         <meta name="twitter:title" content="terms and conditions" key="twitter-title" />
       </Head>
       <div className='containers'>
-        <h2>Privacy Policy</h2>
-        <header>1. About this Policy</header> 
+        <h2>Terms and Conditions</h2>
         <p>
-          This Privacy and Cookie Notice provides information and directives on how Ojaa Foods &amp; Logistics Services Ltd collects and maintains and stores your personal data when you visit our website or mobile applications. 
+          The following terms and conditions and any other rules posted on “Ojaafoods” website, mobile
+          app and other channels shall constitute an agreement between Ojaa Food and Logistics
+          Services Ltd and you, the visitor, governing your access and use of all contents and
+          functionalities available on our website and related micro-sites.
         </p>
-        <header>2. Collected Data</header> 
         <p>
-          Data are collected, stored and processed to continually improve on our products and services. Data collected are used for marketing optimization purposes such as Google Digital Marketing. 
-        </p>
-        <header>3. How We Use Your Personal Data</header> 
-        <div>
-          We process your data to improve and develop the products and services that we offer.<br/><br/> Your data are used for the following on our platform:
+          For your convenience, we have listed below some general information   about ourselves:
           <ul>
-            <li>To create an account for you as a new user on Ojaafoods platforms</li>
-            <li>Delivering and processing your orders and enquiries</li>
-            <li>Customer relationship management</li>
-            <li>Enabling you to participate in surveys and promotions</li>
-            <li>Improving our website, applications, products and services</li>
-            <li>Complying with our legal obligations, including verifying your identity where necessary for fraud detection.</li>
-          </ul>      
-        </div> 
-        <header>4. How We Share Your Personal Data</header>
-        <p>
-          We may need to share your personal data with third parties for the following purposes:<br/><br/> Sale of products and services: In order to deliver your products and services purchased on our platform from third parties, we may be required to provide your personal data to such third parties. ( Eg Logistics Companies, Financial Institution , marketing agencies etc )<br/><br/> Working with third party service providers: We engage third parties to perform certain functions on our behalf. Examples include fulfilling orders for products or services, delivering packages, analyzing data, providing marketing assistance, processing payments, transmitting content, assessing and managing credit risk.<br/><br/> Business transfers: As we continue to develop our business, we might sell or buy other businesses or services. In such transactions, customer information may be transferred together with other business assets.<br/><br/> Detecting fraud and abuse: We release account and other personal data to other companies and organizations for fraud protection and credit risk reduction, and to comply with the law.<br/><br/> When we share your personal data with third parties we: require them to agree to use your data in accordance with the terms of this Privacy and Cookie Notice, our Privacy Policy and in accordance with the law; and only permit them to process your personal data for specified purposes and in accordance with our instructions. We do not allow our third-party service providers to use your personal data for their own purposes. 
-        </p><header>5. Data Security</header>
-        <p>
-          We have put in place appropriate security measures to prevent your personal data from being accidentally lost, used or accessed in an unauthorised way, altered or disclosed.<br/> In addition, we limit access to your personal data to those employees, agents, contractors and other third parties who have a business need to know. They will only process your personal data on our instructions and they are subject to a duty of confidentiality.<br/> We have put in place stringent procedures to deal with any suspected personal data breach and will notify you and any applicable regulator of a breach where we are legally required to do so. 
-        </p> 
-        <header>6. Your Legal Rights</header>
-        <p>
-          It is important that the personal data we hold about you is accurate and current. Please keep us informed if your personal data changes during your relationship with us.<br/> Under certain circumstances, you have rights under data protection laws in relation to your personal data, including the right to opt-out, correct or erase your personal data, object to or restrict processing of your personal data, and unsubscribe from our emails and newsletters.
-        </p>  
-        <header>7. Further Details</header>
-        <p>
-          We respect the trust you place in Ojaa Foods &amp; Logistics Services Ltd. However, our privacy policy is subject to change at any time without notice. Ensure you check this policy document periodically.<br/><br/> If you are looking for more information on how we process and maintain your data please contact: info@ojaafoods.ng
-        </p> 
+            <li>
+            "We" are Ojaa food Logistics {'&'} Services Limited (“Ojaafoods”), and "us" and ''our" have
+a corresponding meaning herein.
+            </li>
+            <li>
+            We are a private company incorporated in accordance with the laws of Nigeria
+            </li>
+          </ul>
+        </p>
+        <p>By visiting our channels and clicking on the check-out button, you are accepting and
+        consenting to the practices described in this terms and conditions. These can be modified
+        from time to time and your continued use of our channels following such change shall signify
+        your agreement to be bound by the modified terms and conditions
+        </p>
+        <ul className='termsList'>
+          <li>
+            <header>Product Availability {'&'} Advance Payment</header> 
+            <p>
+            All orders are subject to acceptance and availability, and Items in your shopping cart are not
+reserved and may be purchased by other customers. 
+            </p>
+            <p>
+            Ojaa Food and Logistic Services Ltd offers products for sale that are in stock and available for
+dispatch from our distribution centers. Occasionally however, we may be waiting for shipments
+from our Foodstuff and Baby foods suppliers. Consequently, you may from time to time be
+given the possibility of making an Advance Payment for “certain items “ in which case you are
+able to make an Advance Purchase. This will ensure that you receive this item in priority.
+            </p>
+          </li>
+          <li>
+            <header>Limitations of liability.</header> 
+            <p>
+            <strong>Items You Purchase:</strong> Ojaafoods does not plant or manufacture any of the items sold through  her channels. We only provide the avenue; Ojaafoods can't and does not make any warranties  about the quality, safety, or even their legality. Kindly release Ojaafoods from any claims  related to items sold through her channels including for defective items, misrepresentations  by manufacturers, or items that caused physical injury. 
+            </p>
+            <p>
+            <strong>Content You Access:</strong> You may come across materials that you find offensive or inappropriate  while using our Services. You shall release us from all liability relating to that content.
+            </p>
+            <p>
+            <strong>Third-Party Services:</strong> Our Services may contain links to third-party websites or services that  we don’t own or control (for example, links to Payment platforms, Suppliers website,  Facebook, Instagram, Twitter etc). You may also need to use a third party’s product or service  in order to use some of our Services (like a compatible Laptop and mobile device to use our  mobile apps). When you access these third-party services, you do so at your own risk. The  third parties may require you to accept their own terms of use. Ojaafoods is not a party to  those agreements; they are solely between you and the third party.
+            </p>
+          </li>
+          <li>
+            <header>Intellectual property/trademark protection.</header> 
+            <p>
+            You acknowledge and agree that all copyright, designs, "look and feel" trademark of Ojaafoods Channels ( Website {'&'} Mobile app) and all other intellectual property and material rights  relating to the Content as herein described, including Software and all HTML and other code  contained in our Channels shall remain at all times vested in Ojaafood {'&'} Logistics Services  Ltd and/or are the property of their respective owners. All such Content, including third party  trademarks, designs and related intellectual property rights mentioned or displayed on our  channels are protected by federal and state laws and regulations and international treaty  provisions. You are permitted to use the Content only as expressly authorized by Ojaafood 
+and Logistics services Ltd and/or its third party licensors. Any reproduction or redistribution of  the above listed Content is prohibited and may result in civil and criminal penalties. Violators  will be prosecuted to the fullest extent permissible under applicable law. Without limiting the  foregoing, copying and use of the above listed materials to any other server, location or  support for publication, reproduction or distribution is expressly prohibited.
+            </p>
+          </li>
+          <li>
+            <header>Pricing and payment terms and delivery</header>
+            <p>Items listed on our platform will be priced with the Nigerian Currency ( Naira). All  transactions/orders processed on our platform must be paid fully with all the applicable  charges and not a partial payment transaction. Orders will be delivered in line with delivery  timeline applicable at the time of making the orders. Ojaafoods reserves the right to change  the time of delivery if confronted with challenges beyond her control E.g (Lockdown, Safety  and security reason, non- availability of stock).Customers will be notified accordingly should  we have reasons to change or delay the delivery timeline.</p>
+            <p>
+            Customers will take full responsibility as defined by Ojaafood and Logistic Services Ltd if they  are unavailable to take delivery of goods ordered on our platform within the stipulated delivery  time
+            </p>
+          </li>
+          <li>
+            <header>Promotional Codes</header>
+            <p>The Promotional code is valid for a limited time only. Ojaafoods reserves the right to modify or cancel the promo code at any time.</p>
+            <p>
+            Each Promo code has a minimum purchase requirement and can be used only once, unless  otherwise stated.
+            </p>
+            <p>
+            Promo code is not transferable, can not be resold or redeemed for cash.
+            </p>
+          </li>
+          <li>
+            <header>Returns and cancellations.</header>
+            <p>
+            We operate a no return and no refund policy. Once you place an order on our platform and  you check out you are not permitted to cancel your order. You cannot return goods delivered  nor request a refund. However, Ojaafood and Logistics Services Ltd places premium on  Excellence. We shall ensure goods processed for delivery are fresh and of good quality
+            </p>
+          </li>
+          <li>
+            <header>Dispute resolution </header>
+            <p>
+            If you are upset with us, let us know, and hopefully we can resolve the issue amicably without  recourse to legal proceedings at all.
+            </p>
+          </li>
+        </ul>
+        
       </div>
       <style jsx>{`
+        ul.termsList {
+          padding-left : 20px;
+        }
         header {
           color : #060606;
           font-weight : bold;
@@ -61,3 +117,5 @@ export default () => {
     </Layout>
   )
 }
+
+export default Terms

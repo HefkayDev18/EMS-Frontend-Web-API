@@ -25,7 +25,7 @@ export default () => {
         <h3>Contact Us</h3>
         <h5>Ojaa Food {'&'} Logistics Services Ltd.</h5>
         <h5>Ikeja, Lagos</h5>
-        <p>customercare@ojaafoods.ng,  +234(0) 809 899 4599</p>
+        <p>customercare@ojaafoods.ng,  +234(0) 809 899 4599, +234(0) 913 186 8887</p>
       </div>
     </Layout>
   )
