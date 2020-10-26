@@ -1,5 +1,4 @@
 import Layout from '../components/Layout'
-import Link from 'next/link'
 import Head from 'next/head'
 
 export default () => {
@@ -48,7 +47,7 @@ export default () => {
         </p>  
         <header>7. Further Details</header>
         <p>
-          We respect the trust you place in Ojaa Foods &amp; Logistics Services Ltd. However, our privacy policy is subject to change at any time without notice. Ensure you check this policy document periodically.<br/><br/> If you are looking for more information on how we process and maintain your data please contact: info@ojaafoods.ng
+          We respect the trust you place in Ojaa Foods &amp; Logistics Services Ltd. However, our privacy policy is subject to change at any time without notice. Ensure you check this policy document periodically.<br/><br/> If you are looking for more information on how we process and maintain your data please contact: customercare@ojaafoods.ng
         </p> 
       </div>
       <style jsx>{`
